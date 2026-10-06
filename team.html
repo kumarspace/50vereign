@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Our Team | Sovereign Ventures</title>
-  <meta name="description" content="The multidisciplinary team and advisory network of Sovereign Ventures bring a combined track record of over US$12 billion in completed transactions across industries and cross-border markets.">
+  <meta name="description" content="Meet the Sovereign Ventures team and Global Advisory Team: professionals with experience across corporate finance, investment banking, capital markets and strategic transactions.">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#ffffff">
   <meta name="format-detection" content="telephone=no">
@@ -16,13 +16,13 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Sovereign Ventures">
   <meta property="og:title" content="Our Team | Sovereign Ventures">
-  <meta property="og:description" content="The multidisciplinary team and advisory network of Sovereign Ventures bring a combined track record of over US$12 billion in completed transactions across industries and cross-border markets.">
+  <meta property="og:description" content="Meet the Sovereign Ventures team and Global Advisory Team: professionals with experience across corporate finance, investment banking, capital markets and strategic transactions.">
   <meta property="og:url" content="https://www.example.com/team.html">
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Our Team | Sovereign Ventures">
-  <meta name="twitter:description" content="The multidisciplinary team and advisory network of Sovereign Ventures bring a combined track record of over US$12 billion in completed transactions across industries and cross-border markets.">
+  <meta name="twitter:description" content="Meet the Sovereign Ventures team and Global Advisory Team: professionals with experience across corporate finance, investment banking, capital markets and strategic transactions.">
 
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23080808'/%3E%3Crect x='15' y='14' width='4' height='36' fill='%23C8102E'/%3E%3Ctext x='25' y='46' font-family='Georgia,serif' font-size='36' fill='%23ffffff'%3ES%3C/text%3E%3C/svg%3E">
 
@@ -392,30 +392,116 @@
       .trio__item + .trio__item { border-top: 1px solid var(--line); }
     }
 
-    /* 11 · Leadership profiles ------------------------------------------ */
-    .team-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 48px clamp(24px, 2.4vw, 32px); }
+    /* 11 · Team profiles ------------------------------------------------ */
+    .section-head--team {
+      display: grid; grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: var(--col-gap); row-gap: 24px; align-items: end;
+    }
+    .section-head--team .section-head__main { grid-column: 1 / span 6; }
+    .team-intro { grid-column: 7 / span 6; max-width: 62ch; color: var(--text-2); text-wrap: pretty; }
+    @media (max-width: 1023px) {
+      .section-head--team .section-head__main, .team-intro { grid-column: 1 / -1; }
+    }
+
+    .team-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 56px clamp(24px, 2.4vw, 32px); }
     .profile { display: flex; flex-direction: column; min-width: 0; }
+    /* Cards in a row share rows, so names, summaries and "View profile" line up */
+    @supports (grid-template-rows: subgrid) {
+      @media (min-width: 480px) {
+        .profile { display: grid; grid-row: span 4; grid-template-rows: subgrid; row-gap: 0; }
+      }
+    }
     .profile__portrait {
       position: relative; display: grid; place-items: center; aspect-ratio: 4 / 5; overflow: hidden;
       background-color: #ebebeb;
       background-image: repeating-linear-gradient(135deg, rgba(10, 10, 10, .045) 0 1px, transparent 1px 12px);
     }
     .profile__portrait::before { content: ""; position: absolute; top: 0; left: 0; z-index: 1; width: 2px; height: 56px; background: var(--red); }
-    .profile__monogram { font-family: var(--font-serif); font-size: clamp(48px, 4.6vw, 76px); line-height: 1; letter-spacing: .02em; color: #b9b9b9; }
+    .profile__monogram { font-family: var(--font-serif); font-size: clamp(48px, 4.6vw, 76px); line-height: 1; letter-spacing: .02em; color: #a9a9a9; }
     /* Real portraits: <img class="profile__img" ...> inside .profile__portrait. Remove the grayscale filter for colour photos. */
     .profile__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05); }
-    .profile__office { margin-top: 24px; font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--accent-text); }
-    .profile__name { margin-top: 10px; font-family: var(--font-serif); font-size: clamp(24px, 2vw, 30px); line-height: 1.12; color: var(--ink); text-wrap: balance; }
-    .profile__role { margin-top: 6px; font-size: 14.5px; font-weight: 600; line-height: 1.45; color: var(--ink); }
-    .profile__bio { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line-strong); font-size: 15px; line-height: 1.65; color: var(--text-2); }
+    .profile__name { margin-top: 22px; font-family: var(--font-serif); font-size: clamp(23px, 1.9vw, 28px); line-height: 1.12; color: var(--ink); text-wrap: balance; }
+    .profile__role { margin-top: 8px; font-size: 14.5px; font-weight: 500; line-height: 1.5; color: #3a3a3a; text-wrap: pretty; }
+    .profile__more { margin-top: 20px; }
+    .profile__toggle {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 14px;
+      border-top: 1px solid var(--line-strong); list-style: none; cursor: pointer;
+      font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--ink);
+      transition: color .3s var(--ease);
+    }
+    .profile__toggle::-webkit-details-marker { display: none; }
+    .profile__toggle::marker { content: ""; }
+    .profile__toggle:hover { color: var(--red); }
+    .profile__toggle svg { width: 12px; height: 12px; color: var(--red); transition: transform .35s var(--ease-out); }
+    .profile__more[open] .profile__toggle svg { transform: rotate(45deg); }
+    .profile__details { padding-top: 4px; font-size: 14.5px; line-height: 1.6; color: var(--text-2); }
+    .profile__details > p { margin-top: 12px; }
+    .profile__label { margin: 20px 0 4px; font-family: var(--font-sans); font-size: 11px; font-weight: 700; line-height: 1.4; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); }
+    .profile__list li { position: relative; padding: 8px 0 8px 18px; border-bottom: 1px solid var(--line); }
+    .profile__list li:last-child { border-bottom: 0; }
+    .profile__list li::before { content: ""; position: absolute; left: 0; top: calc(8px + .62em); width: 5px; height: 5px; background: var(--red); }
     @media (max-width: 1023px) { .team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
     @media (max-width: 479px) {
-      .team-grid { grid-template-columns: 1fr; row-gap: 40px; }
-      .profile { display: grid; grid-template-columns: 112px 1fr; column-gap: 18px; align-items: start; }
-      .profile__portrait { grid-row: 1 / span 3; }
-      .profile__monogram { font-size: 36px; }
-      .profile__office { margin-top: 2px; }
-      .profile__bio { grid-column: 1 / -1; margin-top: 20px; }
+      .team-grid { grid-template-columns: 1fr; row-gap: 36px; }
+      .profile { display: grid; grid-template-columns: 96px 1fr; column-gap: 18px; align-items: start; }
+      .profile__portrait { grid-row: 1 / span 2; }
+      .profile__monogram { font-size: 32px; }
+      .profile__name { margin-top: 0; }
+      .profile__more { grid-column: 1 / -1; margin-top: 16px; }
+    }
+
+    /* Profile panel ------------------------------------------------------- */
+    html.dialog-open { overflow: hidden; }
+    .profile-dialog {
+      width: min(880px, calc(100% - 48px)); max-width: none; max-height: calc(100% - 48px);
+      margin: auto; padding: 0; border: 0; color: var(--ink); background: var(--white);
+      box-shadow: 0 40px 100px rgba(8, 8, 8, .28); overflow: hidden;
+    }
+    .profile-dialog::backdrop { background: rgba(8, 8, 8, .62); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
+    .profile-dialog[open] { display: flex; flex-direction: column; animation: dialog-in .45s var(--ease-out); }
+    @keyframes dialog-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+    .profile-dialog__scroll {
+      flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain;
+      padding: clamp(28px, 4vw, 56px); border-top: 3px solid var(--red);
+    }
+    .profile-dialog__close {
+      position: absolute; top: 18px; right: 18px; z-index: 2; display: grid; place-items: center;
+      width: 44px; height: 44px; color: var(--ink); background: var(--white); border: 1px solid var(--line-strong);
+      transition: background-color .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease);
+    }
+    .profile-dialog__close:hover { color: #fff; background: var(--ink); border-color: var(--ink); }
+    .profile-dialog__close svg { width: 14px; height: 14px; }
+    .profile-dialog__head {
+      display: grid; grid-template-columns: 112px 1fr; column-gap: 28px; align-items: end;
+      padding: 0 52px 28px 0; border-bottom: 1px solid var(--ink);
+    }
+    .profile-dialog__head .profile__portrait { width: 112px; }
+    .profile-dialog__head .profile__monogram { font-size: 40px; }
+    .profile-dialog__group { font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--accent-text); }
+    .profile-dialog__name { margin-top: 10px; font-family: var(--font-serif); font-size: clamp(30px, 3.2vw, 44px); line-height: 1.05; color: var(--ink); text-wrap: balance; }
+    .profile-dialog__role { margin-top: 10px; font-size: 15.5px; font-weight: 500; line-height: 1.5; color: #3a3a3a; text-wrap: pretty; }
+    .profile-dialog__content { max-width: 68ch; font-size: 16px; line-height: 1.65; color: var(--text-2); }
+    .profile-dialog__content > p { margin-top: 24px; }
+    .profile-dialog__content .profile__label { margin-top: 30px; margin-bottom: 6px; }
+    .profile-dialog__content .profile__list li { padding: 11px 0 11px 22px; color: var(--ink); }
+    .profile-dialog__content .profile__list li::before { top: calc(11px + .66em); }
+    .profile-dialog__nav {
+      display: flex; justify-content: space-between; gap: 16px;
+      padding: 14px clamp(28px, 4vw, 56px); border-top: 1px solid var(--line); background: var(--off-white);
+    }
+    .profile-dialog__step { display: inline-flex; align-items: center; gap: 14px; min-height: 48px; min-width: 0; text-align: left; color: var(--ink); }
+    .profile-dialog__step--next { text-align: right; }
+    .profile-dialog__step small { display: block; font-size: 10.5px; font-weight: 700; line-height: 1.4; letter-spacing: .16em; text-transform: uppercase; color: var(--text-3); }
+    .profile-dialog__step [data-name] { display: block; font-family: var(--font-serif); font-size: 18px; line-height: 1.25; }
+    .profile-dialog__step:hover [data-name] { text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: 4px; }
+    .profile-dialog__step svg { flex: none; width: 14px; height: 14px; color: var(--red); }
+    @media (max-width: 599px) {
+      .profile-dialog { width: 100%; height: 100%; max-height: 100%; }
+      .profile-dialog__head { grid-template-columns: 80px 1fr; column-gap: 18px; padding-right: 40px; }
+      .profile-dialog__head .profile__portrait { width: 80px; }
+      .profile-dialog__head .profile__monogram { font-size: 30px; }
+      .profile-dialog__nav { padding-inline: 20px; }
+      .profile-dialog__step [data-name] { font-size: 15px; }
     }
 
     /* 12 · Advisory network --------------------------------------------- */
@@ -618,8 +704,7 @@
     }
   </style>
 
-  <!-- Page structured data. Update the domain in every "@id", "url" and "item".
-       When team profiles are added, a "Person" entry per team member can be added to the @graph. -->
+  <!-- Page structured data. Update the domain in every "@id", "url" and "item". -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -636,7 +721,7 @@
         "@id": "https://www.example.com/team.html#webpage",
         "url": "https://www.example.com/team.html",
         "name": "Our Team | Sovereign Ventures",
-        "description": "The multidisciplinary team and advisory network of Sovereign Ventures bring a combined track record of over US$12 billion in completed transactions across industries and cross-border markets.",
+        "description": "Meet the Sovereign Ventures team and Global Advisory Team: professionals with experience across corporate finance, investment banking, capital markets and strategic transactions.",
         "about": { "@id": "https://www.example.com/#organization" },
         "breadcrumb": { "@id": "https://www.example.com/team.html#breadcrumb" }
       },
@@ -728,12 +813,13 @@
 
       <p class="eyebrow fade-up" style="--delay:.05s">Our Team</p>
       <h1 class="page-title" id="page-title">
-        <span class="page-title__line"><span style="--i:0">Multidisciplinary Team<span class="dot">.</span></span></span>
-        <span class="page-title__line"><span style="--i:1">Advisory Network<span class="dot">.</span></span></span>
+        <span class="page-title__line"><span style="--i:0">Our People <span class="dot">—</span></span></span>
+        <span class="page-title__line"><span style="--i:1">The Heart of Our Business</span></span>
       </h1>
 
       <div class="page-hero__body">
-        <p class="page-hero__lead fade-up" style="--delay:.45s">Our multidisciplinary team and advisory network bring a combined track record of over US$12 billion in completed transactions across industries and cross-border markets.</p>
+        <p class="page-hero__lead fade-up" style="--delay:.45s">Our people are central to the quality of our advisory practice.</p>
+        <p class="page-hero__sub fade-up" style="--delay:.55s">Sovereign Ventures brings together professionals with experience across corporate finance, investment banking, capital markets and strategic transactions, enabling us to address the financial and commercial considerations inherent in complex transactions.</p>
       </div>
 
       <div class="trio fade-up" style="--delay:.65s">
@@ -756,66 +842,420 @@
     </div>
   </section>
 
-  <!-- ========================================================= LEADERSHIP -->
-  <section class="section theme-light theme-light--off" id="leadership" aria-labelledby="leadership-title">
+  <!-- =========================================================== OUR TEAM -->
+  <section class="section theme-light theme-light--off" id="our-team" data-group="Our Team" aria-labelledby="team-title">
     <div class="container">
-      <header class="section-head">
-        <p class="eyebrow" data-reveal>Leadership</p>
-        <h2 class="h2" id="leadership-title" data-reveal style="--d:1">Our Leadership Team</h2>
+      <header class="section-head section-head--team">
+        <div class="section-head__main">
+          <p class="eyebrow" data-reveal>Our Team</p>
+          <h2 class="h2" id="team-title" data-reveal style="--d:1">An Integrated Advisory Platform</h2>
+        </div>
+        <p class="team-intro" data-reveal style="--d:2">Our team operates as an integrated advisory platform, combining individual areas of specialization with a collaborative approach to execution. This enables Sovereign Ventures to provide disciplined and confidential advice across capital raising, debt and structured finance, M&amp;A, strategic advisory and related corporate finance requirements.</p>
       </header>
 
       <!--
-        TEAM PROFILES — replace each bracketed placeholder with real details.
-        One <article class="profile"> per person; copy an article to add more people, delete one to remove.
-          · Photo: replace <span class="profile__monogram">SV</span> with
+        TEAM PROFILES. Each person is one <article class="profile">: the card shows the name and a one-line
+        summary, and "View profile" opens the full details held in .profile__details.
+          · Photo: replace <span class="profile__monogram">…</span> with
               <img class="profile__img" src="images/team/firstname-lastname.jpg" alt="Portrait of Full Name"
                    width="800" height="1000" loading="lazy">
             (portrait 4:5, at least 800 × 1000 px; shown in black and white unless the filter in .profile__img is removed)
-            Without a photo, the person's initials can replace "SV".
-          · Office: India, UAE, USA or Mexico (or the city).
-          · Name, designation, and a biography of two or three sentences.
       -->
       <div class="team-grid">
         <article class="profile" data-reveal>
-          <div class="profile__portrait"><span class="profile__monogram" aria-hidden="true">SV</span></div>
-          <p class="profile__office">[Office]</p>
-          <h3 class="profile__name">[Team member name]</h3>
-          <p class="profile__role">[Designation]</p>
-          <p class="profile__bio">[Two or three sentences on experience, sectors and transaction focus.]</p>
+          <div class="profile__portrait"><span class="profile__monogram" aria-hidden="true">BU</span></div>
+          <h3 class="profile__name">Babu UL</h3>
+          <p class="profile__role">22+ years in Banking, Financial Services, and Corporate Advisory</p>
+          <details class="profile__more">
+            <summary class="profile__toggle"><span>View profile</span><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M6 1v10M1 6h10"/></svg></summary>
+            <div class="profile__details">
+                <h4 class="profile__label">Key achievements &amp; expertise</h4>
+                <ul class="profile__list" role="list">
+                  <li>Manages an active deal portfolio valued at over US$900M.</li>
+                  <li>Acts as a financial advisor for mid-sized M&amp;A, SME turnaround/interim CFO, and State Government PPP projects.</li>
+                  <li>Expert in ECBs, FCCBs, project finance, venture capital, and cross-border expansion.</li>
+                </ul>
+            </div>
+          </details>
         </article>
 
         <article class="profile" data-reveal style="--d:1">
-          <div class="profile__portrait"><span class="profile__monogram" aria-hidden="true">SV</span></div>
-          <p class="profile__office">[Office]</p>
-          <h3 class="profile__name">[Team member name]</h3>
-          <p class="profile__role">[Designation]</p>
-          <p class="profile__bio">[Two or three sentences on experience, sectors and transaction focus.]</p>
+          <div class="profile__portrait"><span class="profile__monogram" aria-hidden="true">TI</span></div>
+          <h3 class="profile__name">TS Shanker Iyer</h3>
+          <p class="profile__role">27+ years in Investment Banking, Telecom, IT, and Management Consultancy</p>
+          <details class="profile__more">
+            <summary class="profile__toggle"><span>View profile</span><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M6 1v10M1 6h10"/></svg></summary>
+            <div class="profile__details">
+                <h4 class="profile__label">Key achievements &amp; expertise</h4>
+                <ul class="profile__list" role="list">
+                  <li>Personal advisor and coach to Mukesh Ambani for Reliance Industries’ global entry strategies and M&amp;A activities.</li>
+                  <li>Part of the core execution team for the acquisition and post-merger integration of Flag Telecom with Reliance Infocomm.</li>
+                  <li>Managed complex, cross-border IT/IS and domain transformation projects on a global scale.</li>
+                </ul>
+            </div>
+          </details>
         </article>
 
         <article class="profile" data-reveal style="--d:2">
-          <div class="profile__portrait"><span class="profile__monogram" aria-hidden="true">SV</span></div>
-          <p class="profile__office">[Office]</p>
-          <h3 class="profile__name">[Team member name]</h3>
-          <p class="profile__role">[Designation]</p>
-          <p class="profile__bio">[Two or three sentences on experience, sectors and transaction focus.]</p>
+          <div class="profile__portrait"><span class="profile__monogram" aria-hidden="true">KK</span></div>
+          <h3 class="profile__name">Dr. Kamal Khandelwal</h3>
+          <p class="profile__role">Economist and international business strategist</p>
+          <details class="profile__more">
+            <summary class="profile__toggle"><span>View profile</span><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M6 1v10M1 6h10"/></svg></summary>
+            <div class="profile__details">
+                <p>Dr. Kamal Khandelwal is a seasoned economist and international business strategist with extensive experience in international trade, infrastructure development, structured finance, and institutional partnerships. He has held leadership positions across government, academia, and international organizations.</p>
+                <h4 class="profile__label">Key leadership positions</h4>
+                <ul class="profile__list" role="list">
+                  <li>Secretary General – National Institute of Human Values</li>
+                  <li>Member – International Council of Commercial Arbitration</li>
+                  <li>President – Maharishi University of Information Technology, Noida &amp; Lucknow</li>
+                  <li>Former Advisor, International Affairs – MWR WAPCOS, Government of India</li>
+                  <li>Executive Director – ACA Scientific Research &amp; Trading Pvt. Ltd.</li>
+                </ul>
+                <h4 class="profile__label">Major project experience</h4>
+                <ul class="profile__list" role="list">
+                  <li>US$110 billion: Comprehensive &amp; Sustainable Maa Ganga River Cleaning Project</li>
+                  <li>US$7.5 billion: Bengaluru City Solid Waste Management &amp; Cleaning Project</li>
+                  <li>National Education Initiative benefiting over 100,000 students</li>
+                </ul>
+                <h4 class="profile__label">Academic qualifications</h4>
+                <ul class="profile__list" role="list">
+                  <li>Ph.D. &amp; M.Phil. – Environmental Sciences</li>
+                  <li>M.Sc. – Environmental Science</li>
+                  <li>M.Sc. – Peace &amp; Global Security</li>
+                  <li>MBA – International Business</li>
+                  <li>B.Com. (Hons.)</li>
+                </ul>
+            </div>
+          </details>
         </article>
 
         <article class="profile" data-reveal style="--d:3">
-          <div class="profile__portrait"><span class="profile__monogram" aria-hidden="true">SV</span></div>
-          <p class="profile__office">[Office]</p>
-          <h3 class="profile__name">[Team member name]</h3>
-          <p class="profile__role">[Designation]</p>
-          <p class="profile__bio">[Two or three sentences on experience, sectors and transaction focus.]</p>
+          <div class="profile__portrait"><span class="profile__monogram" aria-hidden="true">MS</span></div>
+          <h3 class="profile__name">Mahadevan Shankar</h3>
+          <p class="profile__role">Advisory Director &amp; Former Partner at Deloitte &amp; Touche</p>
+          <details class="profile__more">
+            <summary class="profile__toggle"><span>View profile</span><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M6 1v10M1 6h10"/></svg></summary>
+            <div class="profile__details">
+                <h4 class="profile__label">Experience</h4>
+                <p>20+ years in Big 4 accounting and advisory firms across Australia, Russia, and Central Asia.</p>
+                <h4 class="profile__label">Key achievements &amp; expertise</h4>
+                <ul class="profile__list" role="list">
+                  <li>Advises large multinational PE/VC funds on strategic entry and investments into India.</li>
+                  <li>Guides large Indian corporations in cross-border outbound M&amp;A across Europe, Australia, Americas, and Africa.</li>
+                  <li>Specialized in IFRS, due diligence, external commercial borrowings, and tax structuring across infrastructure, real estate, and clean energy.</li>
+                </ul>
+            </div>
+          </details>
+        </article>
+
+        <article class="profile" data-reveal>
+          <div class="profile__portrait"><span class="profile__monogram" aria-hidden="true">T</span></div>
+          <h3 class="profile__name">Tabu (Dia)</h3>
+          <p class="profile__role">15+ years in Private Equity and Debt segments</p>
+          <details class="profile__more">
+            <summary class="profile__toggle"><span>View profile</span><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M6 1v10M1 6h10"/></svg></summary>
+            <div class="profile__details">
+                <h4 class="profile__label">Key achievements &amp; expertise</h4>
+                <ul class="profile__list" role="list">
+                  <li>Founded boutique Investment Banking Group Harvest Investments.</li>
+                  <li>Handled equity and debt capital raising, capital structure advisory, M&amp;A, and joint ventures.</li>
+                  <li>Built a massive global network across Sovereign Wealth Funds, PE groups, family offices, and multinational banks.</li>
+                </ul>
+            </div>
+          </details>
+        </article>
+
+        <article class="profile" data-reveal style="--d:1">
+          <div class="profile__portrait"><span class="profile__monogram" aria-hidden="true">SG</span></div>
+          <h3 class="profile__name">Sabitha GS</h3>
+          <p class="profile__role">Investor Relations</p>
+          <details class="profile__more">
+            <summary class="profile__toggle"><span>View profile</span><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M6 1v10M1 6h10"/></svg></summary>
+            <div class="profile__details">
+                <p>Sabitha GS is responsible for investor relations and maintaining relationships with investors and financial stakeholders. Her role includes supporting investor communication, relationship development and coordination across the firm’s investment and advisory activities.</p>
+            </div>
+          </details>
+        </article>
+
+        <article class="profile" data-reveal style="--d:2">
+          <div class="profile__portrait"><span class="profile__monogram" aria-hidden="true">MA</span></div>
+          <h3 class="profile__name">Malik A.</h3>
+          <p class="profile__role">Senior Corporate Finance &amp; PE Specialist</p>
+          <details class="profile__more">
+            <summary class="profile__toggle"><span>View profile</span><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M6 1v10M1 6h10"/></svg></summary>
+            <div class="profile__details">
+                <h4 class="profile__label">Experience</h4>
+                <p>17+ years across India, Middle East, and North Africa.</p>
+                <h4 class="profile__label">Key achievements &amp; expertise</h4>
+                <ul class="profile__list" role="list">
+                  <li>Qualified CFA, MBA, and Engineer with experience in multinational financial institutions.</li>
+                  <li>Executed equity investments, project lending, M&amp;A advisory, and private equity syndication across retail, healthcare, logistics, and oil &amp; gas.</li>
+                </ul>
+            </div>
+          </details>
+        </article>
+
+        <article class="profile" data-reveal style="--d:3">
+          <div class="profile__portrait"><span class="profile__monogram" aria-hidden="true">B</span></div>
+          <h3 class="profile__name">Bhaskar</h3>
+          <p class="profile__role">20+ years in Corporate Finance, Strategic Consulting, and Advisory Services</p>
+          <details class="profile__more">
+            <summary class="profile__toggle"><span>View profile</span><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M6 1v10M1 6h10"/></svg></summary>
+            <div class="profile__details">
+                <h4 class="profile__label">Key achievements &amp; expertise</h4>
+                <ul class="profile__list" role="list">
+                  <li>Specializes in cross-border financial advisory, corporate restructuring, and capital raising strategies.</li>
+                  <li>Advises mid-market enterprises and multinational clients on strategic growth planning, market entry, and transaction advisory.</li>
+                  <li>Extensively experienced in managing complex corporate deals, PPP transaction advisory, and regulatory compliance across diverse industries.</li>
+                  <li>Proven track record in optimizing capital structures, financial modeling, and delivering end-to-end consulting solutions to unlock business value.</li>
+                </ul>
+            </div>
+          </details>
+        </article>
+
+        <article class="profile" data-reveal>
+          <div class="profile__portrait"><span class="profile__monogram" aria-hidden="true">BM</span></div>
+          <h3 class="profile__name">Bhavik Mehta</h3>
+          <p class="profile__role">Chartered Accountant with extensive transaction expertise</p>
+          <details class="profile__more">
+            <summary class="profile__toggle"><span>View profile</span><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M6 1v10M1 6h10"/></svg></summary>
+            <div class="profile__details">
+                <h4 class="profile__label">Key achievements &amp; expertise</h4>
+                <ul class="profile__list" role="list">
+                  <li>Evaluated debt and PE transactions ranging from US$5 million to US$500+ million.</li>
+                  <li>Specializes in financial/valuation models, transaction structuring, real estate construction finance, working capital, and NPA restructuring.</li>
+                </ul>
+            </div>
+          </details>
+        </article>
+
+        <article class="profile" data-reveal style="--d:1">
+          <div class="profile__portrait"><span class="profile__monogram" aria-hidden="true">PD</span></div>
+          <h3 class="profile__name">Dr. Percy Doctor</h3>
+          <p class="profile__role">26+ years in corporate finance, accounting, project planning, and taxation</p>
+          <details class="profile__more">
+            <summary class="profile__toggle"><span>View profile</span><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M6 1v10M1 6h10"/></svg></summary>
+            <div class="profile__details">
+                <h4 class="profile__label">Key achievements &amp; expertise</h4>
+                <ul class="profile__list" role="list">
+                  <li>Holds a Ph.D. in Management.</li>
+                  <li>Represents multiple PSU/private banks and NBFCs for term loans, working capital limits, PCFC, and private equity debt restructuring.</li>
+                </ul>
+            </div>
+          </details>
+        </article>
+
+        <article class="profile" data-reveal style="--d:2">
+          <div class="profile__portrait"><span class="profile__monogram" aria-hidden="true">K</span></div>
+          <h3 class="profile__name">Kalavathi</h3>
+          <p class="profile__role">Founder (Pathfinders Consultancy), Former Team Leader (Emirates NBD, HSBC)</p>
+          <details class="profile__more">
+            <summary class="profile__toggle"><span>View profile</span><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M6 1v10M1 6h10"/></svg></summary>
+            <div class="profile__details">
+                <h4 class="profile__label">Experience</h4>
+                <p>16+ years in Banking &amp; Financial Services across the Middle East and India.</p>
+                <h4 class="profile__label">Key achievements &amp; expertise</h4>
+                <ul class="profile__list" role="list">
+                  <li>IIM Ahmedabad (MBA Finance) and St. Stephen’s College graduate.</li>
+                  <li>Managed Global Debt Capital Markets for major GCC corporates/quasi-government entities at Emirates NBD.</li>
+                  <li>Former corporate finance/capital markets lead at HSBC Dubai and ANZ Grindlays Bank.</li>
+                </ul>
+            </div>
+          </details>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================== GLOBAL ADVISORY TEAM -->
+  <section class="section theme-light" id="global-advisory-team" data-group="Global Advisory Team" aria-labelledby="advisory-title">
+    <div class="container">
+      <header class="section-head section-head--team">
+        <div class="section-head__main">
+          <p class="eyebrow" data-reveal>Global Advisory Team</p>
+          <h2 class="h2" id="advisory-title" data-reveal style="--d:1">Relationships Across the Investment Community</h2>
+        </div>
+        <p class="team-intro" data-reveal style="--d:2">Our professionals also maintain relationships across the corporate, financial and investment communities, providing access to relevant investors, lenders, strategic counterparties and transaction participants. We consider this combination of experience, institutional relationships and transaction expertise fundamental to the effective execution of our clients’ mandates.</p>
+      </header>
+
+      <!--
+        TEAM PROFILES. Each person is one <article class="profile">: the card shows the name and a one-line
+        summary, and "View profile" opens the full details held in .profile__details.
+          · Photo: replace <span class="profile__monogram">…</span> with
+              <img class="profile__img" src="images/team/firstname-lastname.jpg" alt="Portrait of Full Name"
+                   width="800" height="1000" loading="lazy">
+            (portrait 4:5, at least 800 × 1000 px; shown in black and white unless the filter in .profile__img is removed)
+      -->
+      <div class="team-grid">
+        <article class="profile" data-reveal>
+          <div class="profile__portrait"><span class="profile__monogram" aria-hidden="true">JP</span></div>
+          <h3 class="profile__name">Jos M.C. Plas</h3>
+          <p class="profile__role">Founder &amp; CEO (Pro Balance Capital Inc.), Former Consultant (Boston Consulting Group)</p>
+          <details class="profile__more">
+            <summary class="profile__toggle"><span>View profile</span><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M6 1v10M1 6h10"/></svg></summary>
+            <div class="profile__details">
+                <h4 class="profile__label">Experience</h4>
+                <p>30+ years in M&amp;A, strategy, and corporate transformation.</p>
+                <h4 class="profile__label">Key achievements &amp; expertise</h4>
+                <ul class="profile__list" role="list">
+                  <li>Managed major M&amp;A transactions ranging from US$50M to €7B.</li>
+                  <li>International professor, author of “Directing Success: Smart Change in Organizations”, and executive counselor.</li>
+                  <li>Holds degrees in Organizational Psychology (Leiden), Business Economics (Erasmus), and a Master’s in International Business (ASU).</li>
+                </ul>
+            </div>
+          </details>
+        </article>
+
+        <article class="profile" data-reveal style="--d:1">
+          <div class="profile__portrait"><span class="profile__monogram" aria-hidden="true">AR</span></div>
+          <h3 class="profile__name">Prof. Dr. S. Arul Raj</h3>
+          <p class="profile__role">Founder &amp; Chairman (ARULS Groups), Former National President (IMA)</p>
+          <details class="profile__more">
+            <summary class="profile__toggle"><span>View profile</span><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M6 1v10M1 6h10"/></svg></summary>
+            <div class="profile__details">
+                <h4 class="profile__label">Experience</h4>
+                <p>Global healthcare leader, medical professor, and entrepreneur.</p>
+                <h4 class="profile__label">Key achievements &amp; expertise</h4>
+                <ul class="profile__list" role="list">
+                  <li>Served as President of Commonwealth Medical Association (UK) and Chairman of Commonwealth Health Professions Alliance.</li>
+                  <li>Founded Zenox Lifescience, Logix Life Science, Grandix Pharmaceuticals, and several diagnostic centers/hospitals.</li>
+                  <li>Leads environmental, green energy, and health tourism infrastructure projects internationally.</li>
+                </ul>
+            </div>
+          </details>
+        </article>
+
+        <article class="profile" data-reveal style="--d:2">
+          <div class="profile__portrait"><span class="profile__monogram" aria-hidden="true">AS</span></div>
+          <h3 class="profile__name">Ajay Sharma</h3>
+          <p class="profile__role">~18 years in international telecom, strategy, and corporate finance across Europe, Middle East, India, and China</p>
+          <details class="profile__more">
+            <summary class="profile__toggle"><span>View profile</span><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M6 1v10M1 6h10"/></svg></summary>
+            <div class="profile__details">
+                <h4 class="profile__label">Key achievements &amp; expertise</h4>
+                <ul class="profile__list" role="list">
+                  <li>Managed massive telecom projects exceeding US$300M and closed US$70M+ sales deals in Europe.</li>
+                  <li>Educated at Harvard Business School (M&amp;A/CRMA), NIMBAS/Bradford (MBA), and DEI University (Engineering).</li>
+                  <li>Facilitates cross-border India–Netherlands M&amp;A, renewable energy, space, and technology investments.</li>
+                </ul>
+            </div>
+          </details>
+        </article>
+
+        <article class="profile" data-reveal style="--d:3">
+          <div class="profile__portrait"><span class="profile__monogram" aria-hidden="true">DD</span></div>
+          <h3 class="profile__name">Dinesh Dhume</h3>
+          <p class="profile__role">25+ years as a Chartered Accountant, including 15 years in M&amp;A and 10 years in Islamic Investment Banking</p>
+          <details class="profile__more">
+            <summary class="profile__toggle"><span>View profile</span><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M6 1v10M1 6h10"/></svg></summary>
+            <div class="profile__details">
+                <h4 class="profile__label">Key achievements &amp; expertise</h4>
+                <ul class="profile__list" role="list">
+                  <li>Co-founded Tranz Lease Holdings India, a fast-growing car leasing company.</li>
+                  <li>Held leadership roles at Yazi Capital, Capital Partners, Unicorn Investment Bank, Adeem Investment Co., and KPMG Kuwait.</li>
+                  <li>Keynote speaker on Islamic Finance at top global conferences (WIBC, Euromoney London).</li>
+                </ul>
+            </div>
+          </details>
+        </article>
+
+        <article class="profile" data-reveal>
+          <div class="profile__portrait"><span class="profile__monogram" aria-hidden="true">PR</span></div>
+          <h3 class="profile__name">Pradeep Rathi</h3>
+          <p class="profile__role">30+ years mentoring and advising start-ups across IT, Biotech, Real Estate, and Agro-retail</p>
+          <details class="profile__more">
+            <summary class="profile__toggle"><span>View profile</span><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M6 1v10M1 6h10"/></svg></summary>
+            <div class="profile__details">
+                <h4 class="profile__label">Key achievements &amp; expertise</h4>
+                <ul class="profile__list" role="list">
+                  <li>Established computer hardware/software ventures and mentored early dot-com companies.</li>
+                  <li>Consults on M&amp;A, fund raising, land acquisition, and project implementation for mixed-use real estate, hospitality, and branded retail projects.</li>
+                </ul>
+            </div>
+          </details>
+        </article>
+
+        <article class="profile" data-reveal style="--d:1">
+          <div class="profile__portrait"><span class="profile__monogram" aria-hidden="true">MB</span></div>
+          <h3 class="profile__name">Matt SJ Bell</h3>
+          <p class="profile__role">Founder &amp; President (BankIntroductions.com, West Capitalist Corp)</p>
+          <details class="profile__more">
+            <summary class="profile__toggle"><span>View profile</span><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M6 1v10M1 6h10"/></svg></summary>
+            <div class="profile__details">
+                <h4 class="profile__label">Experience</h4>
+                <p>20+ years in mortgage, commercial real estate, and venture finance.</p>
+                <h4 class="profile__label">Key achievements &amp; expertise</h4>
+                <ul class="profile__list" role="list">
+                  <li>Licensed mortgage broker managing funding network across North America, Europe, and Asia for capitalizations up to US$1 billion.</li>
+                  <li>Established digital portals for global banking strategies, currency risk management, and commercial project funding.</li>
+                </ul>
+            </div>
+          </details>
+        </article>
+
+        <article class="profile" data-reveal style="--d:2">
+          <div class="profile__portrait"><span class="profile__monogram" aria-hidden="true">MA</span></div>
+          <h3 class="profile__name">Michel Arvin</h3>
+          <p class="profile__role">Principal (West Capitalist Corp), Founder (Arvin Design Inc.)</p>
+          <details class="profile__more">
+            <summary class="profile__toggle"><span>View profile</span><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M6 1v10M1 6h10"/></svg></summary>
+            <div class="profile__details">
+                <h4 class="profile__label">Experience</h4>
+                <p>Serial entrepreneur, industrial designer, and real estate finance principal.</p>
+                <h4 class="profile__label">Key achievements &amp; expertise</h4>
+                <ul class="profile__list" role="list">
+                  <li>Holds 5 utility and design patents as a product inventor.</li>
+                  <li>Specializes in commercial mortgages, technology venture funding, and global private lender network syndication.</li>
+                </ul>
+            </div>
+          </details>
+        </article>
+
+        <article class="profile" data-reveal style="--d:3">
+          <div class="profile__portrait"><span class="profile__monogram" aria-hidden="true">BC</span></div>
+          <h3 class="profile__name">Brian K. Childress</h3>
+          <p class="profile__role">President &amp; CEO (Sterling Global Capital LLC)</p>
+          <details class="profile__more">
+            <summary class="profile__toggle"><span>View profile</span><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M6 1v10M1 6h10"/></svg></summary>
+            <div class="profile__details">
+                <h4 class="profile__label">Experience</h4>
+                <p>Executive leadership in capital sourcing, legal staffing, and operations.</p>
+                <h4 class="profile__label">Key achievements &amp; expertise</h4>
+                <ul class="profile__list" role="list">
+                  <li>Oversees capital placement portfolios ranging from US$10M to US$600M+, including a major US$3.5 billion investment raise project.</li>
+                  <li>Focuses on Oil &amp; Gas, Renewable Energy, Mining, Tech, and Luxury Resorts across North America, Europe, Middle East, and Russia.</li>
+                </ul>
+            </div>
+          </details>
+        </article>
+
+        <article class="profile" data-reveal>
+          <div class="profile__portrait"><span class="profile__monogram" aria-hidden="true">TB</span></div>
+          <h3 class="profile__name">Tab Brown</h3>
+          <p class="profile__role">Owner (Synergy Financial Group), VP Investor Relations (Sterling Global Capital)</p>
+          <details class="profile__more">
+            <summary class="profile__toggle"><span>View profile</span><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M6 1v10M1 6h10"/></svg></summary>
+            <div class="profile__details">
+                <h4 class="profile__label">Experience</h4>
+                <p>Commercial/residential lending, global asset allocation, and media management.</p>
+                <h4 class="profile__label">Key achievements &amp; expertise</h4>
+                <ul class="profile__list" role="list">
+                  <li>Former Senior Lending Analyst and Owner/Founder of multiple financial/insurance entities.</li>
+                  <li>Chamber of Commerce Ambassador actively driving global investor relations, business development, and private equity placement.</li>
+                </ul>
+            </div>
+          </details>
         </article>
       </div>
     </div>
   </section>
 
   <!-- =================================================== ADVISORY NETWORK -->
-  <section class="section theme-light" id="advisory-network" aria-labelledby="network-title">
+  <section class="section theme-light theme-light--off" id="advisory-network" aria-labelledby="network-title">
     <div class="container network">
       <div class="network__content">
-        <p class="eyebrow" data-reveal>Advisory Network</p>
+        <p class="eyebrow" data-reveal>Specialist Advisors</p>
         <h2 class="h2" id="network-title" data-reveal style="--d:1">Specialist Expertise Where Required</h2>
         <p class="lead network__text" data-reveal style="--d:2">International transactions may involve additional legal, regulatory, tax and currency considerations. We coordinate with appropriate specialist advisors where required.</p>
         <div data-reveal style="--d:3">
@@ -839,11 +1279,11 @@
   </section>
 
   <!-- ======================================================= HOW WE WORK -->
-  <section class="section theme-light theme-light--off" id="how-we-work" aria-labelledby="how-title">
+  <section class="section theme-light" id="how-we-work" aria-labelledby="how-title">
     <div class="container">
       <p class="eyebrow" data-reveal>How We Work</p>
       <h2 class="h2" id="how-title" data-reveal style="--d:1">From Initial Assessment to Completion</h2>
-      <p class="lead network__text" data-reveal style="--d:2">We work with management teams and stakeholders from the initial assessment of an opportunity through structuring, negotiation and completion.</p>
+      <p class="lead network__text" data-reveal style="--d:2">We approach each mandate with a clear understanding of the client’s strategic objectives, capital requirements and value-creation priorities. Our professionals evaluate the relevant financial, commercial and structural considerations to develop solutions that are practical, well considered and aligned with the client’s objectives.</p>
 
       <ol class="steps-strip" role="list" data-reveal>
         <li><span class="steps-strip__num" aria-hidden="true">01</span><span class="steps-strip__name">Understand</span></li>
@@ -862,7 +1302,7 @@
   </section>
 
   <!-- ============================================================ MARKETS -->
-  <section class="section theme-light" id="markets" aria-labelledby="markets-title">
+  <section class="section theme-light theme-light--off" id="markets" aria-labelledby="markets-title">
     <div class="container">
       <header class="section-head">
         <p class="eyebrow" data-reveal>Where We Work</p>
@@ -934,6 +1374,16 @@
   </section>
 
 </main>
+
+<!-- Profile panel: filled from the selected card's details by the script -->
+<dialog class="profile-dialog" id="profile-dialog" aria-labelledby="profile-dialog-name">
+  <button class="profile-dialog__close" type="button" data-dialog-close aria-label="Close profile"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M1 1l12 12M13 1L1 13"/></svg></button>
+  <div class="profile-dialog__scroll" data-dialog-body></div>
+  <div class="profile-dialog__nav">
+    <button class="profile-dialog__step" type="button" data-dialog-prev><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M13 7H1.5M6 2.5 1.5 7 6 11.5"/></svg><span><small>Previous</small><span data-name></span></span></button>
+    <button class="profile-dialog__step profile-dialog__step--next" type="button" data-dialog-next><span><small>Next</small><span data-name></span></span><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M1 7h11.5M8 2.5 12.5 7 8 11.5"/></svg></button>
+  </div>
+</dialog>
 
 <!-- ==================================================================== FOOTER -->
 <footer class="site-footer theme-dark">
@@ -1147,11 +1597,91 @@
     });
   }
 
+  /* 6 · Team profiles: "View profile" opens the full profile in a panel ------ */
+  // Without JavaScript (or without <dialog> support) each card's details simply expand in place.
+  function initProfiles() {
+    var dialog = document.getElementById('profile-dialog');
+    var cards = toArray(document.querySelectorAll('.profile'));
+    if (!dialog || !cards.length || typeof dialog.showModal !== 'function') return;
+
+    var body = dialog.querySelector('[data-dialog-body]');
+    var prev = dialog.querySelector('[data-dialog-prev]');
+    var next = dialog.querySelector('[data-dialog-next]');
+    var current = 0;
+    var opener = null;
+
+    function nameOf(card) { return card.querySelector('.profile__name').textContent; }
+
+    function render(index) {
+      current = (index + cards.length) % cards.length;
+      var card = cards[current];
+      var group = card.closest('[data-group]');
+      var role = card.querySelector('.profile__role');
+
+      var head = document.createElement('div');
+      head.className = 'profile-dialog__head';
+      head.appendChild(card.querySelector('.profile__portrait').cloneNode(true));
+      var text = document.createElement('div');
+      text.innerHTML = '<p class="profile-dialog__group"></p><h2 class="profile-dialog__name" id="profile-dialog-name"></h2><p class="profile-dialog__role"></p>';
+      text.querySelector('.profile-dialog__group').textContent = group ? group.getAttribute('data-group') : '';
+      text.querySelector('.profile-dialog__name').textContent = nameOf(card);
+      text.querySelector('.profile-dialog__role').textContent = role ? role.textContent : '';
+      head.appendChild(text);
+
+      var content = card.querySelector('.profile__details').cloneNode(true);
+      content.className = 'profile-dialog__content';
+      // Sub-headings sit one level below the panel's name
+      toArray(content.querySelectorAll('h4')).forEach(function (h4) {
+        var h3 = document.createElement('h3');
+        h3.className = h4.className;
+        h3.textContent = h4.textContent;
+        h4.parentNode.replaceChild(h3, h4);
+      });
+
+      body.innerHTML = '';
+      body.appendChild(head);
+      body.appendChild(content);
+      body.scrollTop = 0;
+
+      prev.querySelector('[data-name]').textContent = nameOf(cards[(current - 1 + cards.length) % cards.length]);
+      next.querySelector('[data-name]').textContent = nameOf(cards[(current + 1) % cards.length]);
+    }
+
+    cards.forEach(function (card, index) {
+      var summary = card.querySelector('.profile__toggle');
+      if (!summary) return;
+      summary.setAttribute('aria-haspopup', 'dialog');
+      summary.addEventListener('click', function (event) {
+        event.preventDefault(); // open the panel instead of expanding the card
+        opener = summary;
+        render(index);
+        dialog.showModal();
+        doc.classList.add('dialog-open');
+      });
+    });
+
+    prev.addEventListener('click', function () { render(current - 1); });
+    next.addEventListener('click', function () { render(current + 1); });
+    dialog.querySelector('[data-dialog-close]').addEventListener('click', function () { dialog.close(); });
+    // A click on the dimmed backdrop lands on the dialog element itself
+    dialog.addEventListener('click', function (event) { if (event.target === dialog) dialog.close(); });
+    dialog.addEventListener('keydown', function (event) {
+      if (event.target.closest && event.target.closest('input, textarea, select')) return;
+      if (event.key === 'ArrowRight') { event.preventDefault(); render(current + 1); }
+      if (event.key === 'ArrowLeft') { event.preventDefault(); render(current - 1); }
+    });
+    dialog.addEventListener('close', function () {
+      doc.classList.remove('dialog-open');
+      if (opener) opener.focus();
+    });
+  }
+
   /* Init -------------------------------------------------------------------- */
   safe(initReveal);
   safe(initMenu);
   safe(initSmoothScroll);
   safe(initAccordions);
+  safe(initProfiles);
 
   window.addEventListener('scroll', requestUpdate, { passive: true });
   window.addEventListener('resize', requestUpdate);
