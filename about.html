@@ -273,7 +273,7 @@
     .nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(1) { top: 21px; transform: rotate(45deg); }
     .nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(2) { top: 21px; transform: rotate(-45deg); }
 
-    @media (max-width: 1179px) {
+    @media (max-width: 1279px) {
       .primary-nav { display: none; }
       .site-header__cta { margin-left: auto; }
       .js .nav-toggle { display: inline-block; }
@@ -314,7 +314,7 @@
     .mobile-menu__markets {
       font-size: 11px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--text-3);
     }
-    @media (min-width: 1180px) { .mobile-menu { display: none; } }
+    @media (min-width: 1280px) { .mobile-menu { display: none; } }
 
     /* 09 · Page hero ---------------------------------------------------- */
     .page-hero {
@@ -715,6 +715,121 @@
       .js [data-reveal] { opacity: 1 !important; transform: none !important; }
       .acc-panel { grid-template-rows: 1fr !important; visibility: visible !important; }
     }
+  
+    .site-header {
+      --nav-link: var(--grey); --nav-link-active: var(--ink); --nav-underline: var(--red);
+      --subnav-bg: #ffffff; --subnav-border: var(--grey-light); --subnav-text: var(--ink);
+      --subnav-muted: var(--grey); --subnav-line: #eeeeee; --subnav-num: var(--red);
+      --subnav-shadow: 0 28px 60px rgba(10, 10, 10, .09);
+    }
+
+    /* 8-page navigation: tighter spacing so all eight items fit beside the logo and CTA */
+    .site-header__inner { gap: clamp(20px, 2.2vw, 40px); }
+    .primary-nav__list { gap: clamp(15px, 1.45vw, 26px); }
+    .primary-nav__link { font-size: 13.5px; color: var(--nav-link); }
+    .primary-nav__link::after { background: var(--nav-underline); }
+    .primary-nav__link:hover, .primary-nav__link[aria-current="page"],
+    .nav-item--sub.is-open > .primary-nav__link { color: var(--nav-link-active); }
+    .primary-nav__link[aria-current="page"]::after { transform: scaleX(1); }
+
+    /* Services dropdown */
+    .nav-item--sub { position: relative; display: flex; align-items: center; gap: 2px; }
+    .subnav-toggle {
+      display: inline-grid; place-items: center; width: 22px; height: 30px; margin-right: -6px; padding: 0;
+      color: var(--nav-link); background: none; border: 0; cursor: pointer; transition: color .3s var(--ease);
+    }
+    .subnav-toggle svg { width: 10px; height: 10px; transition: transform .35s var(--ease-out); }
+    .nav-item--sub:hover .subnav-toggle, .nav-item--sub.is-open .subnav-toggle { color: var(--nav-link-active); }
+    .nav-item--sub.is-open .subnav-toggle svg { transform: rotate(180deg); }
+    .subnav {
+      position: absolute; top: 100%; left: 50%; z-index: 5; width: 380px; padding-top: 24px;
+      transform: translate(-50%, 8px); opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity .3s var(--ease), transform .4s var(--ease-out), visibility 0s linear .3s;
+    }
+    .site-header.is-scrolled .subnav { padding-top: 18px; }
+    .nav-item--sub.is-open .subnav {
+      opacity: 1; visibility: visible; pointer-events: auto; transform: translate(-50%, 0);
+      transition: opacity .3s var(--ease), transform .4s var(--ease-out), visibility 0s;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .nav-item--sub:not(.is-suppressed):hover .subnav {
+        opacity: 1; visibility: visible; pointer-events: auto; transform: translate(-50%, 0);
+        transition: opacity .3s var(--ease), transform .4s var(--ease-out), visibility 0s;
+      }
+      .nav-item--sub:not(.is-suppressed):hover .subnav-toggle svg { transform: rotate(180deg); }
+    }
+    .subnav__panel {
+      padding: 26px 28px 22px; background: var(--subnav-bg); color: var(--subnav-text);
+      border: 1px solid var(--subnav-border); border-top: 2px solid var(--red); box-shadow: var(--subnav-shadow);
+    }
+    .subnav__label {
+      margin-bottom: 10px; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--subnav-num);
+    }
+    .subnav__link {
+      display: grid; grid-template-columns: 30px 1fr; align-items: baseline; padding: 11px 0;
+      border-bottom: 1px solid var(--subnav-line); color: var(--subnav-text);
+    }
+    .subnav__num { font-size: 11px; font-weight: 700; letter-spacing: .1em; color: var(--subnav-num); font-variant-numeric: tabular-nums; }
+    .subnav__text { font-size: 14.5px; font-weight: 500; line-height: 1.4; transition: color .25s var(--ease), transform .35s var(--ease-out); }
+    .subnav__link:hover .subnav__text, .subnav__link:focus-visible .subnav__text { color: var(--subnav-num); transform: translateX(4px); }
+    .subnav__all {
+      display: inline-flex; align-items: center; gap: 10px; margin-top: 18px;
+      font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--subnav-text);
+    }
+    .subnav__all svg { width: 12px; height: 12px; color: var(--subnav-num); transition: transform .35s var(--ease-out); }
+    .subnav__all:hover svg { transform: translateX(4px); }
+
+    /* Mobile menu: Services row with an expandable list */
+    .mobile-menu__link { font-size: clamp(26px, 6.4vw, 40px); padding: 13px 0; }
+    .mobile-menu__row { display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--line); }
+    .mobile-menu__row .mobile-menu__link { flex: 1; border-bottom: 0; }
+    .mobile-sub-toggle {
+      position: relative; flex: none; width: 44px; height: 44px; margin-right: -10px; padding: 0;
+      color: var(--text); background: none; border: 0; cursor: pointer;
+      opacity: 0; transition: opacity .5s var(--ease);
+    }
+    .mobile-menu.is-open .mobile-sub-toggle { opacity: 1; transition-delay: calc(var(--i, 4) * 45ms + 80ms); }
+    .mobile-sub-toggle span::before, .mobile-sub-toggle span::after {
+      content: ""; position: absolute; left: 50%; top: 50%; width: 16px; height: 1.5px; margin: -.75px 0 0 -8px;
+      background: var(--red); transition: transform .35s var(--ease-out);
+    }
+    .mobile-sub-toggle span::after { transform: rotate(90deg); }
+    .mobile-sub-toggle[aria-expanded="true"] span::after { transform: rotate(0deg); }
+    .mobile-sub { padding: 6px 0 16px; border-bottom: 1px solid var(--line); }
+    .mobile-sub__link {
+      display: grid; grid-template-columns: 34px 1fr; align-items: baseline; padding: 10px 0;
+      font-size: 16px; font-weight: 500; line-height: 1.4; color: var(--text-2); transition: color .25s var(--ease);
+    }
+    .mobile-sub__link:hover { color: var(--text); }
+    .mobile-sub__num { font-size: 11px; font-weight: 700; letter-spacing: .1em; color: var(--accent-text); }
+
+    /* Footer: navigation + services columns */
+    .footer-brand { grid-column: 1 / span 4; }
+    .footer-col--nav { grid-column: 5 / span 3; }
+    .footer-col--services { grid-column: 8 / span 3; }
+    .footer-col--markets { grid-column: 11 / span 2; }
+    @media (max-width: 1023px) {
+      .footer-brand { grid-column: 1 / -1; }
+      .footer-col--nav { grid-column: 1 / span 6; }
+      .footer-col--services { grid-column: 7 / span 6; }
+      .footer-col--markets { grid-column: 1 / -1; }
+    }
+    @media (max-width: 599px) {
+      .footer-col--nav, .footer-col--services { grid-column: 1 / -1; }
+    }
+  
+    .areas a { transition: color .3s var(--ease); }
+    .areas a:hover { color: var(--red); }
+  
+    /* Logo image (images/logo.png; images/logo-dark.png on light headers) */
+    .brand__img { display: block; width: auto; max-width: none; height: 58px; transition: height .45s var(--ease); }
+    .site-header.is-scrolled .brand__img { height: 48px; }
+    @media (max-width: 1023px) {
+      .brand__img { height: 50px; }
+      .site-header.is-scrolled .brand__img { height: 44px; }
+    }
+    .footer-brand .brand__img { width: 200px; max-width: 100%; height: auto; }
   </style>
 
   <!-- Page structured data. Update the domain in every "@id", "url" and "item". -->
@@ -754,28 +869,41 @@
 <a class="skip-link" href="#main">Skip to main content</a>
 
 <!-- ================================================================== HEADER -->
-<!-- Internal navigation: About is this page; Services, Private Capital, M&A and Approach open
-     services.html; Global Network opens the homepage section; Contact opens contact.html. -->
+<!-- Site navigation (8 pages): Home, About Us, Why Sovereign Ventures?, Our Identity,
+     Services (with a dropdown of the seven services), Our Team, Our Partners, Contact Us. -->
 <header class="site-header" id="site-header">
   <div class="site-header__inner">
     <a class="brand" href="index.html" aria-label="Sovereign Ventures home">
-      <svg class="brand__logo" viewBox="0 0 150 34" aria-hidden="true" focusable="false">
-        <rect x="0" y="1" width="2" height="32" fill="#C8102E"/>
-        <text class="brand__l1" x="14" y="14" textLength="134" lengthAdjust="spacing">SOVEREIGN</text>
-        <text class="brand__l2" x="14" y="32" textLength="134" lengthAdjust="spacing">VENTURES</text>
-      </svg>
+      <img class="brand__img" src="images/logo-dark.png" width="106" height="58" alt="Sovereign Ventures" fetchpriority="high">
     </a>
 
     <nav class="primary-nav" aria-label="Primary">
       <ul class="primary-nav__list" role="list">
-        <li><a class="primary-nav__link" href="about.html" aria-current="page">About</a></li>
-        <li><a class="primary-nav__link" href="team.html">Team</a></li>
-        <li><a class="primary-nav__link" href="services.html">Services</a></li>
-        <li><a class="primary-nav__link" href="services.html#private-capital">Private Capital</a></li>
-        <li><a class="primary-nav__link" href="services.html#mergers-acquisitions">M&amp;A</a></li>
-        <li><a class="primary-nav__link" href="index.html#global-network">Global Network</a></li>
-        <li><a class="primary-nav__link" href="services.html#approach">Approach</a></li>
-        <li><a class="primary-nav__link" href="contact.html">Contact</a></li>
+        <li><a class="primary-nav__link" href="index.html">Home</a></li>
+        <li><a class="primary-nav__link" href="about.html" aria-current="page">About Us</a></li>
+        <li><a class="primary-nav__link" href="why-sovereign-ventures.html">Why Sovereign Ventures?</a></li>
+        <li><a class="primary-nav__link" href="our-identity.html">Our Identity</a></li>
+        <li class="nav-item--sub" data-subnav>
+          <a class="primary-nav__link" href="services.html">Services</a><button class="subnav-toggle" type="button" aria-expanded="false" aria-controls="subnav-services" aria-label="Show services"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M1.5 3.5 5 7l3.5-3.5"/></svg></button>
+          <div class="subnav" id="subnav-services">
+            <div class="subnav__panel">
+              <p class="subnav__label">Our Services</p>
+              <ul class="subnav__list" role="list">
+                <li><a class="subnav__link" href="services.html#unsecured-secured-debt"><span class="subnav__num" aria-hidden="true">01</span><span class="subnav__text">Unsecured Debt / Secured Debt</span></a></li>
+                <li><a class="subnav__link" href="services.html#private-equity-quasi-equity"><span class="subnav__num" aria-hidden="true">02</span><span class="subnav__text">Private Equity / Quasi Equity</span></a></li>
+                <li><a class="subnav__link" href="services.html#trade-financing"><span class="subnav__num" aria-hidden="true">03</span><span class="subnav__text">Domestic &amp; International Trade Financing</span></a></li>
+                <li><a class="subnav__link" href="services.html#promoter-funding-private-credit"><span class="subnav__num" aria-hidden="true">04</span><span class="subnav__text">Promoter Funding / Private Credit</span></a></li>
+                <li><a class="subnav__link" href="services.html#aif-structured-financing"><span class="subnav__num" aria-hidden="true">05</span><span class="subnav__text">AIF / Structured Financing</span></a></li>
+                <li><a class="subnav__link" href="services.html#mezzanine-capital"><span class="subnav__num" aria-hidden="true">06</span><span class="subnav__text">Mezzanine Capital</span></a></li>
+                <li><a class="subnav__link" href="services.html#ma-jc"><span class="subnav__num" aria-hidden="true">07</span><span class="subnav__text">M&amp;A and JC</span></a></li>
+              </ul>
+              <a class="subnav__all" href="services.html">View all services<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M1 6h9.5M6.5 2l4 4-4 4"/></svg></a>
+            </div>
+          </div>
+        </li>
+        <li><a class="primary-nav__link" href="team.html">Our Team</a></li>
+        <li><a class="primary-nav__link" href="our-partners.html">Our Partners</a></li>
+        <li><a class="primary-nav__link" href="contact.html">Contact Us</a></li>
       </ul>
     </nav>
 
@@ -788,19 +916,33 @@
   </div>
 </header>
 
-<!-- Mobile navigation panel (below 1180px) -->
+<!-- Mobile navigation panel (below 1280px) -->
 <div class="mobile-menu" id="mobile-menu" inert>
   <div class="container mobile-menu__inner">
     <nav aria-label="Menu">
       <ul class="mobile-menu__list" role="list">
-        <li><a class="mobile-menu__link" href="about.html" aria-current="page" style="--i:0">About</a></li>
-        <li><a class="mobile-menu__link" href="team.html" style="--i:1">Team</a></li>
-        <li><a class="mobile-menu__link" href="services.html" style="--i:2">Services</a></li>
-        <li><a class="mobile-menu__link" href="services.html#private-capital" style="--i:3">Private Capital</a></li>
-        <li><a class="mobile-menu__link" href="services.html#mergers-acquisitions" style="--i:4">M&amp;A</a></li>
-        <li><a class="mobile-menu__link" href="index.html#global-network" style="--i:5">Global Network</a></li>
-        <li><a class="mobile-menu__link" href="services.html#approach" style="--i:6">Approach</a></li>
-        <li><a class="mobile-menu__link" href="contact.html" style="--i:7">Contact</a></li>
+        <li><a class="mobile-menu__link" href="index.html" style="--i:0">Home</a></li>
+        <li><a class="mobile-menu__link" href="about.html" aria-current="page" style="--i:1">About Us</a></li>
+        <li><a class="mobile-menu__link" href="why-sovereign-ventures.html" style="--i:2">Why Sovereign Ventures?</a></li>
+        <li><a class="mobile-menu__link" href="our-identity.html" style="--i:3">Our Identity</a></li>
+        <li class="mobile-menu__group" style="--i:4">
+          <div class="mobile-menu__row">
+            <a class="mobile-menu__link" href="services.html" style="--i:4">Services</a>
+            <button class="mobile-sub-toggle" type="button" aria-expanded="false" aria-controls="mobile-sub-services" aria-label="Show services"><span aria-hidden="true"></span></button>
+          </div>
+          <ul class="mobile-sub" id="mobile-sub-services" role="list" hidden>
+            <li><a class="mobile-sub__link" href="services.html#unsecured-secured-debt"><span class="mobile-sub__num" aria-hidden="true">01</span>Unsecured Debt / Secured Debt</a></li>
+            <li><a class="mobile-sub__link" href="services.html#private-equity-quasi-equity"><span class="mobile-sub__num" aria-hidden="true">02</span>Private Equity / Quasi Equity</a></li>
+            <li><a class="mobile-sub__link" href="services.html#trade-financing"><span class="mobile-sub__num" aria-hidden="true">03</span>Domestic &amp; International Trade Financing</a></li>
+            <li><a class="mobile-sub__link" href="services.html#promoter-funding-private-credit"><span class="mobile-sub__num" aria-hidden="true">04</span>Promoter Funding / Private Credit</a></li>
+            <li><a class="mobile-sub__link" href="services.html#aif-structured-financing"><span class="mobile-sub__num" aria-hidden="true">05</span>AIF / Structured Financing</a></li>
+            <li><a class="mobile-sub__link" href="services.html#mezzanine-capital"><span class="mobile-sub__num" aria-hidden="true">06</span>Mezzanine Capital</a></li>
+            <li><a class="mobile-sub__link" href="services.html#ma-jc"><span class="mobile-sub__num" aria-hidden="true">07</span>M&amp;A and JC</a></li>
+          </ul>
+        </li>
+        <li><a class="mobile-menu__link" href="team.html" style="--i:5">Our Team</a></li>
+        <li><a class="mobile-menu__link" href="our-partners.html" style="--i:6">Our Partners</a></li>
+        <li><a class="mobile-menu__link" href="contact.html" style="--i:7">Contact Us</a></li>
       </ul>
     </nav>
     <div class="mobile-menu__foot">
@@ -997,22 +1139,19 @@
           <h2 class="h2" id="areas-title" data-reveal style="--d:1">Core Areas of Advisory</h2>
         </div>
         <div class="section-head__intro" data-reveal style="--d:2">
-          <p>We advise clients across capital markets, structured finance, private capital, mergers &amp; acquisitions and cross-border transactions.</p>
+          <p>We advise businesses, investors and institutions across seven areas of debt, equity and transaction advisory.</p>
           <a class="btn btn--dark" href="services.html">Explore Our Services</a>
         </div>
       </header>
 
       <ul class="areas" role="list" data-reveal>
-        <li>Debt &amp; Equity Capital Markets</li>
-        <li>Structured Finance</li>
-        <li>International Trade Finance</li>
-        <li>Project Finance</li>
-        <li>Private Equity Advisory</li>
-        <li>Venture Capital</li>
-        <li>Mergers &amp; Acquisitions</li>
-        <li>Strategic Advisory</li>
-        <li>Corporate Restructuring</li>
-        <li>Cross-Border Transactions</li>
+        <li><a href="services.html#unsecured-secured-debt">Unsecured Debt / Secured Debt</a></li>
+        <li><a href="services.html#private-equity-quasi-equity">Private Equity / Quasi Equity</a></li>
+        <li><a href="services.html#trade-financing">Domestic &amp; International Trade Financing</a></li>
+        <li><a href="services.html#promoter-funding-private-credit">Promoter Funding / Private Credit</a></li>
+        <li><a href="services.html#aif-structured-financing">AIF / Structured Financing</a></li>
+        <li><a href="services.html#mezzanine-capital">Mezzanine Capital</a></li>
+        <li><a href="services.html#ma-jc">M&amp;A and JC</a></li>
       </ul>
     </div>
   </section>
@@ -1131,11 +1270,7 @@
     <div class="footer-top">
       <div class="footer-brand">
         <a class="brand" href="index.html" aria-label="Sovereign Ventures home">
-          <svg class="brand__logo" viewBox="0 0 150 34" aria-hidden="true" focusable="false">
-            <rect x="0" y="1" width="2" height="32" fill="#C8102E"/>
-            <text class="brand__l1" x="14" y="14" textLength="134" lengthAdjust="spacing">SOVEREIGN</text>
-            <text class="brand__l2" x="14" y="32" textLength="134" lengthAdjust="spacing">VENTURES</text>
-          </svg>
+          <img class="brand__img" src="images/logo.png" width="200" height="109" alt="Sovereign Ventures" loading="lazy" decoding="async">
         </a>
         <p class="footer-tagline">Built for Global Capital</p>
       </div>
@@ -1143,14 +1278,27 @@
       <nav class="footer-col--nav" aria-label="Footer">
         <h2 class="footer-heading">Navigation</h2>
         <ul class="footer-links" role="list">
-          <li><a href="about.html" aria-current="page">About</a></li>
-          <li><a href="team.html">Team</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html" aria-current="page">About Us</a></li>
+          <li><a href="why-sovereign-ventures.html">Why Sovereign Ventures?</a></li>
+          <li><a href="our-identity.html">Our Identity</a></li>
           <li><a href="services.html">Services</a></li>
-          <li><a href="services.html#private-capital">Private Capital</a></li>
-          <li><a href="services.html#mergers-acquisitions">M&amp;A</a></li>
-          <li><a href="index.html#global-network">Global Network</a></li>
-          <li><a href="services.html#approach">Approach</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="team.html">Our Team</a></li>
+          <li><a href="our-partners.html">Our Partners</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-col--services" aria-label="Services">
+        <h2 class="footer-heading">Services</h2>
+        <ul class="footer-links" role="list">
+          <li><a href="services.html#unsecured-secured-debt">Unsecured Debt / Secured Debt</a></li>
+          <li><a href="services.html#private-equity-quasi-equity">Private Equity / Quasi Equity</a></li>
+          <li><a href="services.html#trade-financing">Domestic &amp; International Trade Financing</a></li>
+          <li><a href="services.html#promoter-funding-private-credit">Promoter Funding / Private Credit</a></li>
+          <li><a href="services.html#aif-structured-financing">AIF / Structured Financing</a></li>
+          <li><a href="services.html#mezzanine-capital">Mezzanine Capital</a></li>
+          <li><a href="services.html#ma-jc">M&amp;A and JC</a></li>
         </ul>
       </nav>
 
@@ -1197,7 +1345,7 @@
   var toggle = header ? header.querySelector('.nav-toggle') : null;
   var menu = document.getElementById('mobile-menu');
   var backToTop = document.querySelector('.back-to-top');
-  var desktopNavQuery = window.matchMedia('(min-width: 1180px)');
+  var desktopNavQuery = window.matchMedia('(min-width: 1280px)');
   var revealItems = toArray(document.querySelectorAll('[data-reveal]'));
 
   function toArray(list) { return Array.prototype.slice.call(list); }
@@ -1352,6 +1500,66 @@
   onMediaChange(motionQuery, function (event) {
     reduceMotion = event.matches;
     if (reduceMotion) revealAll();
+  });
+})();
+</script>
+<script>
+/* Services dropdown (desktop) and expandable services list (mobile menu) */
+(function () {
+  'use strict';
+  function toArray(list) { return Array.prototype.slice.call(list); }
+  var items = toArray(document.querySelectorAll('[data-subnav]'));
+  var canHover = window.matchMedia ? window.matchMedia('(hover: hover) and (pointer: fine)') : { matches: false };
+
+  function setOpen(item, open, focusToggle) {
+    var button = item.querySelector('.subnav-toggle');
+    item.classList.toggle('is-open', open);
+    button.setAttribute('aria-expanded', open ? 'true' : 'false');
+    button.setAttribute('aria-label', open ? 'Hide services' : 'Show services');
+    if (!open && focusToggle) button.focus();
+  }
+
+  items.forEach(function (item) {
+    var button = item.querySelector('.subnav-toggle');
+    button.addEventListener('click', function (event) {
+      event.stopPropagation();
+      var open = !item.classList.contains('is-open');
+      items.forEach(function (other) { if (other !== item) setOpen(other, false); });
+      item.classList.remove('is-suppressed');
+      setOpen(item, open);
+    });
+    item.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && item.classList.contains('is-open')) { event.preventDefault(); setOpen(item, false, true); }
+    });
+    item.addEventListener('focusout', function (event) {
+      if (!event.relatedTarget || !item.contains(event.relatedTarget)) setOpen(item, false);
+    });
+    item.addEventListener('mouseleave', function () {
+      item.classList.remove('is-suppressed');
+      if (canHover.matches) setOpen(item, false);
+    });
+    toArray(item.querySelectorAll('.subnav a')).forEach(function (link) {
+      link.addEventListener('click', function () {
+        setOpen(item, false);
+        item.classList.add('is-suppressed'); // keep a hovering pointer from reopening it immediately
+        link.blur();
+      });
+    });
+  });
+
+  document.addEventListener('click', function (event) {
+    items.forEach(function (item) { if (!item.contains(event.target)) setOpen(item, false); });
+  });
+
+  toArray(document.querySelectorAll('.mobile-sub-toggle')).forEach(function (button) {
+    var list = document.getElementById(button.getAttribute('aria-controls'));
+    if (!list) return;
+    button.addEventListener('click', function () {
+      var open = button.getAttribute('aria-expanded') !== 'true';
+      button.setAttribute('aria-expanded', open ? 'true' : 'false');
+      button.setAttribute('aria-label', open ? 'Hide services' : 'Show services');
+      list.hidden = !open;
+    });
   });
 })();
 </script>

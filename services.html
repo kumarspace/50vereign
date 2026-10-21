@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Services | Sovereign Ventures</title>
-  <meta name="description" content="Sovereign Ventures provides advisory and transaction support across capital and financing, investment and strategic advisory, and special situations and corporate advisory.">
+  <meta name="description" content="Sovereign Ventures advises on unsecured and secured debt, private and quasi equity, trade financing, promoter funding and private credit, AIF and structured financing, mezzanine capital, and M&amp;A.">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#ffffff">
   <meta name="format-detection" content="telephone=no">
@@ -274,7 +274,7 @@
     .nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(1) { top: 21px; transform: rotate(45deg); }
     .nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(2) { top: 21px; transform: rotate(-45deg); }
 
-    @media (max-width: 1179px) {
+    @media (max-width: 1279px) {
       .primary-nav { display: none; }
       .site-header__cta { margin-left: auto; }
       .js .nav-toggle { display: inline-block; }
@@ -315,7 +315,7 @@
     .mobile-menu__markets {
       font-size: 11px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--text-3);
     }
-    @media (min-width: 1180px) { .mobile-menu { display: none; } }
+    @media (min-width: 1280px) { .mobile-menu { display: none; } }
 
     /* 09 · Page hero ---------------------------------------------------- */
     .page-hero {
@@ -780,6 +780,168 @@
       .page-hero { padding-top: 0; }
       .js [data-reveal] { opacity: 1 !important; transform: none !important; }
     }
+  
+    .site-header {
+      --nav-link: var(--grey); --nav-link-active: var(--ink); --nav-underline: var(--red);
+      --subnav-bg: #ffffff; --subnav-border: var(--grey-light); --subnav-text: var(--ink);
+      --subnav-muted: var(--grey); --subnav-line: #eeeeee; --subnav-num: var(--red);
+      --subnav-shadow: 0 28px 60px rgba(10, 10, 10, .09);
+    }
+
+    /* 8-page navigation: tighter spacing so all eight items fit beside the logo and CTA */
+    .site-header__inner { gap: clamp(20px, 2.2vw, 40px); }
+    .primary-nav__list { gap: clamp(15px, 1.45vw, 26px); }
+    .primary-nav__link { font-size: 13.5px; color: var(--nav-link); }
+    .primary-nav__link::after { background: var(--nav-underline); }
+    .primary-nav__link:hover, .primary-nav__link[aria-current="page"],
+    .nav-item--sub.is-open > .primary-nav__link { color: var(--nav-link-active); }
+    .primary-nav__link[aria-current="page"]::after { transform: scaleX(1); }
+
+    /* Services dropdown */
+    .nav-item--sub { position: relative; display: flex; align-items: center; gap: 2px; }
+    .subnav-toggle {
+      display: inline-grid; place-items: center; width: 22px; height: 30px; margin-right: -6px; padding: 0;
+      color: var(--nav-link); background: none; border: 0; cursor: pointer; transition: color .3s var(--ease);
+    }
+    .subnav-toggle svg { width: 10px; height: 10px; transition: transform .35s var(--ease-out); }
+    .nav-item--sub:hover .subnav-toggle, .nav-item--sub.is-open .subnav-toggle { color: var(--nav-link-active); }
+    .nav-item--sub.is-open .subnav-toggle svg { transform: rotate(180deg); }
+    .subnav {
+      position: absolute; top: 100%; left: 50%; z-index: 5; width: 380px; padding-top: 24px;
+      transform: translate(-50%, 8px); opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity .3s var(--ease), transform .4s var(--ease-out), visibility 0s linear .3s;
+    }
+    .site-header.is-scrolled .subnav { padding-top: 18px; }
+    .nav-item--sub.is-open .subnav {
+      opacity: 1; visibility: visible; pointer-events: auto; transform: translate(-50%, 0);
+      transition: opacity .3s var(--ease), transform .4s var(--ease-out), visibility 0s;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .nav-item--sub:not(.is-suppressed):hover .subnav {
+        opacity: 1; visibility: visible; pointer-events: auto; transform: translate(-50%, 0);
+        transition: opacity .3s var(--ease), transform .4s var(--ease-out), visibility 0s;
+      }
+      .nav-item--sub:not(.is-suppressed):hover .subnav-toggle svg { transform: rotate(180deg); }
+    }
+    .subnav__panel {
+      padding: 26px 28px 22px; background: var(--subnav-bg); color: var(--subnav-text);
+      border: 1px solid var(--subnav-border); border-top: 2px solid var(--red); box-shadow: var(--subnav-shadow);
+    }
+    .subnav__label {
+      margin-bottom: 10px; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--subnav-num);
+    }
+    .subnav__link {
+      display: grid; grid-template-columns: 30px 1fr; align-items: baseline; padding: 11px 0;
+      border-bottom: 1px solid var(--subnav-line); color: var(--subnav-text);
+    }
+    .subnav__num { font-size: 11px; font-weight: 700; letter-spacing: .1em; color: var(--subnav-num); font-variant-numeric: tabular-nums; }
+    .subnav__text { font-size: 14.5px; font-weight: 500; line-height: 1.4; transition: color .25s var(--ease), transform .35s var(--ease-out); }
+    .subnav__link:hover .subnav__text, .subnav__link:focus-visible .subnav__text { color: var(--subnav-num); transform: translateX(4px); }
+    .subnav__all {
+      display: inline-flex; align-items: center; gap: 10px; margin-top: 18px;
+      font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--subnav-text);
+    }
+    .subnav__all svg { width: 12px; height: 12px; color: var(--subnav-num); transition: transform .35s var(--ease-out); }
+    .subnav__all:hover svg { transform: translateX(4px); }
+
+    /* Mobile menu: Services row with an expandable list */
+    .mobile-menu__link { font-size: clamp(26px, 6.4vw, 40px); padding: 13px 0; }
+    .mobile-menu__row { display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--line); }
+    .mobile-menu__row .mobile-menu__link { flex: 1; border-bottom: 0; }
+    .mobile-sub-toggle {
+      position: relative; flex: none; width: 44px; height: 44px; margin-right: -10px; padding: 0;
+      color: var(--text); background: none; border: 0; cursor: pointer;
+      opacity: 0; transition: opacity .5s var(--ease);
+    }
+    .mobile-menu.is-open .mobile-sub-toggle { opacity: 1; transition-delay: calc(var(--i, 4) * 45ms + 80ms); }
+    .mobile-sub-toggle span::before, .mobile-sub-toggle span::after {
+      content: ""; position: absolute; left: 50%; top: 50%; width: 16px; height: 1.5px; margin: -.75px 0 0 -8px;
+      background: var(--red); transition: transform .35s var(--ease-out);
+    }
+    .mobile-sub-toggle span::after { transform: rotate(90deg); }
+    .mobile-sub-toggle[aria-expanded="true"] span::after { transform: rotate(0deg); }
+    .mobile-sub { padding: 6px 0 16px; border-bottom: 1px solid var(--line); }
+    .mobile-sub__link {
+      display: grid; grid-template-columns: 34px 1fr; align-items: baseline; padding: 10px 0;
+      font-size: 16px; font-weight: 500; line-height: 1.4; color: var(--text-2); transition: color .25s var(--ease);
+    }
+    .mobile-sub__link:hover { color: var(--text); }
+    .mobile-sub__num { font-size: 11px; font-weight: 700; letter-spacing: .1em; color: var(--accent-text); }
+
+    /* Footer: navigation + services columns */
+    .footer-brand { grid-column: 1 / span 4; }
+    .footer-col--nav { grid-column: 5 / span 3; }
+    .footer-col--services { grid-column: 8 / span 3; }
+    .footer-col--markets { grid-column: 11 / span 2; }
+    @media (max-width: 1023px) {
+      .footer-brand { grid-column: 1 / -1; }
+      .footer-col--nav { grid-column: 1 / span 6; }
+      .footer-col--services { grid-column: 7 / span 6; }
+      .footer-col--markets { grid-column: 1 / -1; }
+    }
+    @media (max-width: 599px) {
+      .footer-col--nav, .footer-col--services { grid-column: 1 / -1; }
+    }
+  
+    /* Services index (hero): seven services */
+    .svc-index {
+      display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: var(--col-gap);
+      margin-top: clamp(56px, 7vw, 104px);
+    }
+    .svc-index li { display: flex; border-top: 1px solid var(--ink); }
+    .svc-index__link {
+      position: relative; flex: 1; display: flex; flex-direction: column; gap: 16px; padding: 24px 28px 30px 0;
+    }
+    .svc-index__num {
+      font-family: var(--font-serif); font-size: clamp(36px, 3vw, 46px); line-height: .8; color: var(--red);
+      transition: color .4s var(--ease);
+    }
+    @supports (-webkit-text-stroke: 1px #000) {
+      .svc-index__num { color: transparent; -webkit-text-stroke: 1px var(--red); }
+      .svc-index__link:hover .svc-index__num, .svc-index__link:focus-visible .svc-index__num { color: var(--red); }
+    }
+    .svc-index__title {
+      font-family: var(--font-serif); font-size: clamp(19px, 1.5vw, 23px); line-height: 1.2; color: var(--ink);
+      text-wrap: balance; text-decoration: underline; text-decoration-color: transparent;
+      text-decoration-thickness: 1px; text-underline-offset: 6px; transition: text-decoration-color .3s var(--ease);
+    }
+    .svc-index__link:hover .svc-index__title { text-decoration-color: var(--red); }
+    .svc-index__link svg {
+      position: absolute; top: 28px; right: 4px; width: 14px; height: 14px; color: var(--red);
+      transition: transform .4s var(--ease-out);
+    }
+    .svc-index__link:hover svg { transform: translateY(3px); }
+    @media (max-width: 1023px) { .svc-index { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 599px) {
+      .svc-index { grid-template-columns: 1fr; }
+      .svc-index li { border-top-color: var(--line-strong); }
+      .svc-index li:first-child { border-top-color: var(--ink); }
+      .svc-index__link { display: grid; grid-template-columns: 52px 1fr; align-items: center; gap: 14px; padding: 18px 28px 18px 0; }
+      .svc-index__num { font-size: 34px; }
+      .svc-index__link svg { top: 50%; margin-top: -7px; }
+    }
+
+    /* Paired descriptions (e.g. Secured / Unsecured) */
+    .duo {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(32px, 6vw, 96px); row-gap: 40px;
+      margin-bottom: clamp(56px, 6vw, 88px);
+    }
+    .duo__item { padding-top: 28px; border-top: 1px solid var(--ink); }
+    .duo__title { font-family: var(--font-serif); font-size: clamp(30px, 2.8vw, 42px); line-height: 1.05; color: var(--ink); }
+    .duo__text { margin-top: 18px; max-width: 46ch; font-size: var(--fs-lead); line-height: 1.55; color: var(--text-2); text-wrap: pretty; }
+    @media (max-width: 767px) { .duo { grid-template-columns: 1fr; } }
+    .svc-closing { max-width: 40em; margin-top: clamp(40px, 4vw, 56px); }
+    .section .principle { max-width: 24em; }
+  
+    /* Logo image (images/logo.png; images/logo-dark.png on light headers) */
+    .brand__img { display: block; width: auto; max-width: none; height: 58px; transition: height .45s var(--ease); }
+    .site-header.is-scrolled .brand__img { height: 48px; }
+    @media (max-width: 1023px) {
+      .brand__img { height: 50px; }
+      .site-header.is-scrolled .brand__img { height: 44px; }
+    }
+    .footer-brand .brand__img { width: 200px; max-width: 100%; height: auto; }
   </style>
 
   <!-- Page structured data. Update the domain in every "@id", "url" and "item". -->
@@ -795,40 +957,15 @@
         "slogan": "Built for Global Capital",
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
-          "name": "Advisory & Transaction Support",
+          "name": "Services",
           "itemListElement": [
-            {
-              "@type": "OfferCatalog",
-              "name": "Capital & Financing",
-              "itemListElement": [
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Debt Capital Markets" } },
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Structured Finance" } },
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "International Trade Finance" } },
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Project Finance" } },
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mezzanine & Hybrid Capital" } }
-              ]
-            },
-            {
-              "@type": "OfferCatalog",
-              "name": "Investment & Strategic Advisory",
-              "itemListElement": [
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Private Equity Advisory" } },
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Venture Capital" } },
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mergers & Acquisitions" } },
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Strategic Advisory" } },
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Joint Ventures & Strategic Partnerships" } }
-              ]
-            },
-            {
-              "@type": "OfferCatalog",
-              "name": "Special Situations & Corporate Advisory",
-              "itemListElement": [
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Special Situations" } },
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "International & Cross-Border Transactions" } },
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Corporate Restructuring" } },
-                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Financial Advisory" } }
-              ]
-            }
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Unsecured Debt / Secured Debt" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Private Equity / Quasi Equity" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Domestic & International Trade Financing" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Promoter Funding / Private Credit" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AIF / Structured Financing" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mezzanine Capital" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "M&A and JC" } }
           ]
         }
       },
@@ -857,28 +994,41 @@
 <a class="skip-link" href="#main">Skip to main content</a>
 
 <!-- ================================================================== HEADER -->
-<!-- Internal navigation: Services is this page; Private Capital, M&A and Approach jump to their
-     sections below. Global Network opens the homepage section and Contact opens contact.html. -->
+<!-- Site navigation (8 pages): Home, About Us, Why Sovereign Ventures?, Our Identity,
+     Services (with a dropdown of the seven services), Our Team, Our Partners, Contact Us. -->
 <header class="site-header" id="site-header">
   <div class="site-header__inner">
     <a class="brand" href="index.html" aria-label="Sovereign Ventures home">
-      <svg class="brand__logo" viewBox="0 0 150 34" aria-hidden="true" focusable="false">
-        <rect x="0" y="1" width="2" height="32" fill="#C8102E"/>
-        <text class="brand__l1" x="14" y="14" textLength="134" lengthAdjust="spacing">SOVEREIGN</text>
-        <text class="brand__l2" x="14" y="32" textLength="134" lengthAdjust="spacing">VENTURES</text>
-      </svg>
+      <img class="brand__img" src="images/logo-dark.png" width="106" height="58" alt="Sovereign Ventures" fetchpriority="high">
     </a>
 
     <nav class="primary-nav" aria-label="Primary">
       <ul class="primary-nav__list" role="list">
-        <li><a class="primary-nav__link" href="about.html">About</a></li>
-        <li><a class="primary-nav__link" href="team.html">Team</a></li>
-        <li><a class="primary-nav__link" href="services.html" aria-current="page">Services</a></li>
-        <li><a class="primary-nav__link" href="#private-capital">Private Capital</a></li>
-        <li><a class="primary-nav__link" href="#mergers-acquisitions">M&amp;A</a></li>
-        <li><a class="primary-nav__link" href="index.html#global-network">Global Network</a></li>
-        <li><a class="primary-nav__link" href="#approach">Approach</a></li>
-        <li><a class="primary-nav__link" href="contact.html">Contact</a></li>
+        <li><a class="primary-nav__link" href="index.html">Home</a></li>
+        <li><a class="primary-nav__link" href="about.html">About Us</a></li>
+        <li><a class="primary-nav__link" href="why-sovereign-ventures.html">Why Sovereign Ventures?</a></li>
+        <li><a class="primary-nav__link" href="our-identity.html">Our Identity</a></li>
+        <li class="nav-item--sub" data-subnav>
+          <a class="primary-nav__link" href="services.html" aria-current="page">Services</a><button class="subnav-toggle" type="button" aria-expanded="false" aria-controls="subnav-services" aria-label="Show services"><svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false"><path d="M1.5 3.5 5 7l3.5-3.5"/></svg></button>
+          <div class="subnav" id="subnav-services">
+            <div class="subnav__panel">
+              <p class="subnav__label">Our Services</p>
+              <ul class="subnav__list" role="list">
+                <li><a class="subnav__link" href="#unsecured-secured-debt"><span class="subnav__num" aria-hidden="true">01</span><span class="subnav__text">Unsecured Debt / Secured Debt</span></a></li>
+                <li><a class="subnav__link" href="#private-equity-quasi-equity"><span class="subnav__num" aria-hidden="true">02</span><span class="subnav__text">Private Equity / Quasi Equity</span></a></li>
+                <li><a class="subnav__link" href="#trade-financing"><span class="subnav__num" aria-hidden="true">03</span><span class="subnav__text">Domestic &amp; International Trade Financing</span></a></li>
+                <li><a class="subnav__link" href="#promoter-funding-private-credit"><span class="subnav__num" aria-hidden="true">04</span><span class="subnav__text">Promoter Funding / Private Credit</span></a></li>
+                <li><a class="subnav__link" href="#aif-structured-financing"><span class="subnav__num" aria-hidden="true">05</span><span class="subnav__text">AIF / Structured Financing</span></a></li>
+                <li><a class="subnav__link" href="#mezzanine-capital"><span class="subnav__num" aria-hidden="true">06</span><span class="subnav__text">Mezzanine Capital</span></a></li>
+                <li><a class="subnav__link" href="#ma-jc"><span class="subnav__num" aria-hidden="true">07</span><span class="subnav__text">M&amp;A and JC</span></a></li>
+              </ul>
+              <a class="subnav__all" href="services.html">View all services<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M1 6h9.5M6.5 2l4 4-4 4"/></svg></a>
+            </div>
+          </div>
+        </li>
+        <li><a class="primary-nav__link" href="team.html">Our Team</a></li>
+        <li><a class="primary-nav__link" href="our-partners.html">Our Partners</a></li>
+        <li><a class="primary-nav__link" href="contact.html">Contact Us</a></li>
       </ul>
     </nav>
 
@@ -891,19 +1041,33 @@
   </div>
 </header>
 
-<!-- Mobile navigation panel (below 1180px) -->
+<!-- Mobile navigation panel (below 1280px) -->
 <div class="mobile-menu" id="mobile-menu" inert>
   <div class="container mobile-menu__inner">
     <nav aria-label="Menu">
       <ul class="mobile-menu__list" role="list">
-        <li><a class="mobile-menu__link" href="about.html" style="--i:0">About</a></li>
-        <li><a class="mobile-menu__link" href="team.html" style="--i:1">Team</a></li>
-        <li><a class="mobile-menu__link" href="services.html" aria-current="page" style="--i:2">Services</a></li>
-        <li><a class="mobile-menu__link" href="#private-capital" style="--i:3">Private Capital</a></li>
-        <li><a class="mobile-menu__link" href="#mergers-acquisitions" style="--i:4">M&amp;A</a></li>
-        <li><a class="mobile-menu__link" href="index.html#global-network" style="--i:5">Global Network</a></li>
-        <li><a class="mobile-menu__link" href="#approach" style="--i:6">Approach</a></li>
-        <li><a class="mobile-menu__link" href="contact.html" style="--i:7">Contact</a></li>
+        <li><a class="mobile-menu__link" href="index.html" style="--i:0">Home</a></li>
+        <li><a class="mobile-menu__link" href="about.html" style="--i:1">About Us</a></li>
+        <li><a class="mobile-menu__link" href="why-sovereign-ventures.html" style="--i:2">Why Sovereign Ventures?</a></li>
+        <li><a class="mobile-menu__link" href="our-identity.html" style="--i:3">Our Identity</a></li>
+        <li class="mobile-menu__group" style="--i:4">
+          <div class="mobile-menu__row">
+            <a class="mobile-menu__link" href="services.html" aria-current="page" style="--i:4">Services</a>
+            <button class="mobile-sub-toggle" type="button" aria-expanded="false" aria-controls="mobile-sub-services" aria-label="Show services"><span aria-hidden="true"></span></button>
+          </div>
+          <ul class="mobile-sub" id="mobile-sub-services" role="list" hidden>
+            <li><a class="mobile-sub__link" href="#unsecured-secured-debt"><span class="mobile-sub__num" aria-hidden="true">01</span>Unsecured Debt / Secured Debt</a></li>
+            <li><a class="mobile-sub__link" href="#private-equity-quasi-equity"><span class="mobile-sub__num" aria-hidden="true">02</span>Private Equity / Quasi Equity</a></li>
+            <li><a class="mobile-sub__link" href="#trade-financing"><span class="mobile-sub__num" aria-hidden="true">03</span>Domestic &amp; International Trade Financing</a></li>
+            <li><a class="mobile-sub__link" href="#promoter-funding-private-credit"><span class="mobile-sub__num" aria-hidden="true">04</span>Promoter Funding / Private Credit</a></li>
+            <li><a class="mobile-sub__link" href="#aif-structured-financing"><span class="mobile-sub__num" aria-hidden="true">05</span>AIF / Structured Financing</a></li>
+            <li><a class="mobile-sub__link" href="#mezzanine-capital"><span class="mobile-sub__num" aria-hidden="true">06</span>Mezzanine Capital</a></li>
+            <li><a class="mobile-sub__link" href="#ma-jc"><span class="mobile-sub__num" aria-hidden="true">07</span>M&amp;A and JC</a></li>
+          </ul>
+        </li>
+        <li><a class="mobile-menu__link" href="team.html" style="--i:5">Our Team</a></li>
+        <li><a class="mobile-menu__link" href="our-partners.html" style="--i:6">Our Partners</a></li>
+        <li><a class="mobile-menu__link" href="contact.html" style="--i:7">Contact Us</a></li>
       </ul>
     </nav>
     <div class="mobile-menu__foot">
@@ -938,27 +1102,55 @@
         <p class="page-hero__sub fade-up" style="--delay:.55s">We advise businesses, investors and institutions on capital, strategic transactions and international opportunities.</p>
       </div>
 
-      <nav class="fade-up" style="--delay:.7s" aria-label="Service categories">
-        <ol class="cat-index" role="list">
+      <nav class="fade-up" style="--delay:.7s" aria-label="Services on this page">
+        <ol class="svc-index" role="list">
           <li>
-            <a class="cat-index__link" href="#capital-financing">
-              <span class="cat-index__num" aria-hidden="true">01</span>
-              <span class="cat-index__title">Capital &amp; Financing</span>
-              <span class="cat-index__meta"><span>5 services</span><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M7 1v11M2.5 7.5 7 12l4.5-4.5"/></svg></span>
+            <a class="svc-index__link" href="#unsecured-secured-debt">
+              <span class="svc-index__num" aria-hidden="true">01</span>
+              <span class="svc-index__title">Unsecured Debt&nbsp;/ Secured Debt</span>
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M7 1v11M2.5 7.5 7 12l4.5-4.5"/></svg>
             </a>
           </li>
           <li>
-            <a class="cat-index__link" href="#investment-strategic-advisory">
-              <span class="cat-index__num" aria-hidden="true">02</span>
-              <span class="cat-index__title">Investment &amp; Strategic Advisory</span>
-              <span class="cat-index__meta"><span>5 services</span><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M7 1v11M2.5 7.5 7 12l4.5-4.5"/></svg></span>
+            <a class="svc-index__link" href="#private-equity-quasi-equity">
+              <span class="svc-index__num" aria-hidden="true">02</span>
+              <span class="svc-index__title">Private Equity&nbsp;/ Quasi Equity</span>
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M7 1v11M2.5 7.5 7 12l4.5-4.5"/></svg>
             </a>
           </li>
           <li>
-            <a class="cat-index__link" href="#special-situations-corporate-advisory">
-              <span class="cat-index__num" aria-hidden="true">03</span>
-              <span class="cat-index__title">Special Situations &amp; Corporate Advisory</span>
-              <span class="cat-index__meta"><span>4 services</span><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M7 1v11M2.5 7.5 7 12l4.5-4.5"/></svg></span>
+            <a class="svc-index__link" href="#trade-financing">
+              <span class="svc-index__num" aria-hidden="true">03</span>
+              <span class="svc-index__title">Domestic &amp; International Trade Financing</span>
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M7 1v11M2.5 7.5 7 12l4.5-4.5"/></svg>
+            </a>
+          </li>
+          <li>
+            <a class="svc-index__link" href="#promoter-funding-private-credit">
+              <span class="svc-index__num" aria-hidden="true">04</span>
+              <span class="svc-index__title">Promoter Funding&nbsp;/ Private Credit</span>
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M7 1v11M2.5 7.5 7 12l4.5-4.5"/></svg>
+            </a>
+          </li>
+          <li>
+            <a class="svc-index__link" href="#aif-structured-financing">
+              <span class="svc-index__num" aria-hidden="true">05</span>
+              <span class="svc-index__title">AIF&nbsp;/ Structured Financing</span>
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M7 1v11M2.5 7.5 7 12l4.5-4.5"/></svg>
+            </a>
+          </li>
+          <li>
+            <a class="svc-index__link" href="#mezzanine-capital">
+              <span class="svc-index__num" aria-hidden="true">06</span>
+              <span class="svc-index__title">Mezzanine Capital</span>
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M7 1v11M2.5 7.5 7 12l4.5-4.5"/></svg>
+            </a>
+          </li>
+          <li>
+            <a class="svc-index__link" href="#ma-jc">
+              <span class="svc-index__num" aria-hidden="true">07</span>
+              <span class="svc-index__title">M&amp;A and JC</span>
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M7 1v11M2.5 7.5 7 12l4.5-4.5"/></svg>
             </a>
           </li>
         </ol>
@@ -966,70 +1158,69 @@
     </div>
   </section>
 
-  <!-- ================================================= SERVICE CATEGORIES -->
-  <section class="section theme-light theme-light--off" aria-label="Service categories">
-    <div class="container">
-
-      <article class="category" id="capital-financing" aria-labelledby="cat-1-title" data-reveal>
-        <span class="category__num" aria-hidden="true">01</span>
-        <div class="category__intro">
-          <h2 class="category__title" id="cat-1-title">Capital &amp; Financing</h2>
-          <p class="category__desc">Financing alternatives assessed against the business, its cash-flow profile and its existing obligations.</p>
-        </div>
-        <div class="svc-list">
-          <ul role="list">
-            <li><a class="svc-link" href="#debt-structured-finance"><span class="svc-link__text">Debt Capital Markets</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M3 3l10 10M13 5v8H5"/></svg></a></li>
-            <li><a class="svc-link" href="#debt-structured-finance"><span class="svc-link__text">Structured Finance</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M3 3l10 10M13 5v8H5"/></svg></a></li>
-            <li><span class="svc-item">International Trade Finance</span></li>
-            <li><a class="svc-link" href="#project-finance"><span class="svc-link__text">Project Finance</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M3 3l10 10M13 5v8H5"/></svg></a></li>
-            <li><span class="svc-item">Mezzanine &amp; Hybrid Capital</span></li>
-          </ul>
-          <p class="svc-note"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M3 3l10 10M13 5v8H5"/></svg>Services marked with an arrow are covered in more detail further down this page.</p>
-        </div>
-      </article>
-
-      <article class="category" id="investment-strategic-advisory" aria-labelledby="cat-2-title" data-reveal>
-        <span class="category__num" aria-hidden="true">02</span>
-        <div class="category__intro">
-          <h2 class="category__title" id="cat-2-title">Investment &amp; Strategic Advisory</h2>
-          <p class="category__desc">Advice on private capital, acquisitions and strategic partnerships, from initial assessment through to completion.</p>
-        </div>
-        <ul class="svc-list" role="list">
-          <li><a class="svc-link" href="#private-capital"><span class="svc-link__text">Private Equity Advisory</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M3 3l10 10M13 5v8H5"/></svg></a></li>
-          <li><a class="svc-link" href="#private-capital"><span class="svc-link__text">Venture Capital</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M3 3l10 10M13 5v8H5"/></svg></a></li>
-          <li><a class="svc-link" href="#mergers-acquisitions"><span class="svc-link__text">Mergers &amp; Acquisitions</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M3 3l10 10M13 5v8H5"/></svg></a></li>
-          <li><span class="svc-item">Strategic Advisory</span></li>
-          <li><span class="svc-item">Joint Ventures &amp; Strategic Partnerships</span></li>
-        </ul>
-      </article>
-
-      <article class="category" id="special-situations-corporate-advisory" aria-labelledby="cat-3-title" data-reveal>
-        <span class="category__num" aria-hidden="true">03</span>
-        <div class="category__intro">
-          <h2 class="category__title" id="cat-3-title">Special Situations &amp; Corporate Advisory</h2>
-          <p class="category__desc">Support on complex, cross-border and restructuring situations that call for careful structuring and discretion.</p>
-        </div>
-        <ul class="svc-list" role="list">
-          <li><a class="svc-link" href="#debt-structured-finance"><span class="svc-link__text">Special Situations</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M3 3l10 10M13 5v8H5"/></svg></a></li>
-          <li><a class="svc-link" href="#project-finance"><span class="svc-link__text">International &amp; Cross-Border Transactions</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M3 3l10 10M13 5v8H5"/></svg></a></li>
-          <li><a class="svc-link" href="#debt-structured-finance"><span class="svc-link__text">Corporate Restructuring</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true" focusable="false"><path d="M3 3l10 10M13 5v8H5"/></svg></a></li>
-          <li><span class="svc-item">Financial Advisory</span></li>
-        </ul>
-      </article>
-
-    </div>
-  </section>
-
-  <!-- ============================================ PRIVATE EQUITY & CAPITAL -->
-  <section class="section theme-light" id="private-capital" aria-labelledby="pc-title">
+    <!-- ============================= 01 · UNSECURED DEBT / SECURED DEBT -->
+  <section class="section theme-light theme-light--off" id="unsecured-secured-debt" aria-labelledby="s1-title">
     <div class="container">
       <header class="section-head section-head--split">
         <div class="section-head__main">
-          <p class="eyebrow" data-reveal>Private Equity &amp; Capital Raising</p>
-          <h2 class="h2" id="pc-title" data-reveal style="--d:1">Growth Capital &amp; Strategic Investors</h2>
+          <p class="eyebrow" data-reveal>01 · Unsecured Debt / Secured Debt</p>
+          <h2 class="h2" id="s1-title" data-reveal style="--d:1">Capital Solutions Aligned to the Business</h2>
+        </div>
+        <p class="section-head__intro" data-reveal style="--d:2">Debt requirements differ according to the business, cash-flow profile, assets, existing liabilities and purpose of funding.</p>
+      </header>
+
+      <!-- DRAFT COPY (for client review): the two descriptions below -->
+      <div class="duo">
+        <article class="duo__item" data-reveal>
+          <h3 class="duo__title">Secured Debt</h3>
+          <p class="duo__text">Financing structured against the assets, receivables or other security available to the business, with terms matched to its cash flows.</p>
+        </article>
+        <article class="duo__item" data-reveal style="--d:1">
+          <h3 class="duo__title">Unsecured Debt</h3>
+          <p class="duo__text">Financing supported primarily by the strength of the business and its cash flows, where hard collateral is limited or is not the basis of the facility.</p>
+        </article>
+      </div>
+
+      <div data-reveal>
+        <h3 class="list-label">We assist clients in evaluating appropriate financing alternatives, including</h3>
+        <ul class="check-list" role="list">
+          <li>Secured and unsecured debt</li>
+          <li>Structured debt</li>
+          <li>Working capital financing</li>
+          <li>Refinancing</li>
+          <li>Special situation financing</li>
+          <li>Project-related financing</li>
+          <li>Capital structure advisory</li>
+          <li>Debt restructuring</li>
+        </ul>
+      </div>
+
+      <p class="principle" data-reveal>Our emphasis is on understanding the underlying business and its ability to support the proposed financing over the appropriate period.</p>
+    </div>
+  </section>
+
+  <!-- ============================= 02 · PRIVATE EQUITY / QUASI EQUITY -->
+  <section class="section theme-light" id="private-equity-quasi-equity" aria-labelledby="s2-title">
+    <div class="container">
+      <header class="section-head section-head--split">
+        <div class="section-head__main">
+          <p class="eyebrow" data-reveal>02 · Private Equity / Quasi Equity</p>
+          <h2 class="h2" id="s2-title" data-reveal style="--d:1">Growth Capital &amp; Strategic Investors</h2>
         </div>
         <p class="section-head__intro" data-reveal style="--d:2">We assist companies seeking growth and strategic capital and investors evaluating private investment opportunities.</p>
       </header>
+
+      <!-- DRAFT COPY (for client review): the two descriptions below -->
+      <div class="duo">
+        <article class="duo__item" data-reveal>
+          <h3 class="duo__title">Private Equity</h3>
+          <p class="duo__text">Minority or majority equity from private equity funds, family offices and strategic investors, for growth, expansion or shareholder transitions.</p>
+        </article>
+        <article class="duo__item" data-reveal style="--d:1">
+          <h3 class="duo__title">Quasi Equity</h3>
+          <p class="duo__text">Instruments that sit between debt and equity, such as convertible instruments and preference capital, where a business needs flexible capital with limited immediate dilution.</p>
+        </article>
+      </div>
 
       <div data-reveal>
         <h3 class="list-label">Our work may include</h3>
@@ -1049,27 +1240,134 @@
     </div>
   </section>
 
-  <!-- ========================================= DEBT & STRUCTURED FINANCE -->
-  <section class="section theme-light theme-light--off" id="debt-structured-finance" aria-labelledby="debt-title">
+  <!-- ================== 03 · DOMESTIC & INTERNATIONAL TRADE FINANCING -->
+  <!-- DRAFT COPY (for client review): this whole section is new wording -->
+  <section class="section theme-light theme-light--off" id="trade-financing" aria-labelledby="s3-title">
+    <div class="container">
+      <header class="section-head section-head--split">
+        <div class="section-head__main">
+          <p class="eyebrow" data-reveal>03 · Domestic &amp; International Trade Financing</p>
+          <h2 class="h2" id="s3-title" data-reveal style="--d:1">Financing Across the Trade Cycle</h2>
+        </div>
+        <p class="section-head__intro" data-reveal style="--d:2">We assist importers, exporters and trading businesses in arranging finance for domestic and cross-border trade, from purchase order through to receipt of payment.</p>
+      </header>
+
+      <ul class="pf-grid" role="list" data-reveal>
+        <li>Letters of credit</li>
+        <li>Bank guarantees &amp; standby letters of credit</li>
+        <li>Buyer’s credit</li>
+        <li>Supplier’s credit</li>
+        <li>Pre-shipment &amp; packing credit</li>
+        <li>Post-shipment finance</li>
+        <li>Import &amp; export finance</li>
+        <li>Receivables &amp; supply chain finance</li>
+        <li>Working capital for trade cycles</li>
+      </ul>
+
+      <aside class="note" aria-label="Note on international transactions" data-reveal>
+        <svg class="note__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M12 10.5v6.5M12 7v.6"/>
+        </svg>
+        <div>
+          <span class="note__label">Please note</span>
+          <p>International transactions may involve additional legal, regulatory, tax and currency considerations. We coordinate with appropriate specialist advisors where required.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ======================== 04 · PROMOTER FUNDING / PRIVATE CREDIT -->
+  <!-- DRAFT COPY (for client review): this section is new wording, apart from
+       "Special situation financing" and "Refinancing" which come from the profile -->
+  <section class="section theme-light" id="promoter-funding-private-credit" aria-labelledby="s4-title">
+    <div class="container">
+      <header class="section-head section-head--split">
+        <div class="section-head__main">
+          <p class="eyebrow" data-reveal>04 · Promoter Funding / Private Credit</p>
+          <h2 class="h2" id="s4-title" data-reveal style="--d:1">Flexible Capital Beyond Conventional Lending</h2>
+        </div>
+        <p class="section-head__intro" data-reveal style="--d:2">Promoters and companies sometimes need capital that conventional bank lending does not readily provide, whether for growth, acquisitions, refinancing or special situations.</p>
+      </header>
+
+      <div class="duo">
+        <article class="duo__item" data-reveal>
+          <h3 class="duo__title">Promoter Funding</h3>
+          <p class="duo__text">Financing raised at promoter or holding-company level, structured around the promoter’s shareholding, cash flows and objectives.</p>
+        </article>
+        <article class="duo__item" data-reveal style="--d:1">
+          <h3 class="duo__title">Private Credit</h3>
+          <p class="duo__text">Capital from private credit funds, family offices and other non-bank lenders, with terms tailored to the specific transaction.</p>
+        </article>
+      </div>
+
+      <div data-reveal>
+        <h3 class="list-label">Our work may include</h3>
+        <ul class="marker-list" role="list">
+          <li>Promoter funding against shareholding</li>
+          <li>Stake acquisition &amp; consolidation</li>
+          <li>Holding-company financing</li>
+          <li>Bridge &amp; event-driven financing</li>
+          <li>Special situation financing</li>
+          <li>Refinancing</li>
+          <li>Lender identification &amp; engagement</li>
+          <li>Structuring &amp; negotiation support</li>
+        </ul>
+      </div>
+
+      <p class="principle" data-reveal>Each structure is evaluated against the promoter’s objectives, existing obligations and the lender’s requirements.</p>
+    </div>
+  </section>
+
+  <!-- =============================== 05 · AIF / STRUCTURED FINANCING -->
+  <!-- DRAFT COPY (for client review): heading, intro and the first three items are new wording;
+       the remaining items and the closing line come from the profile's project finance section -->
+  <section class="section section--blueprint theme-light theme-light--off" id="aif-structured-financing" aria-labelledby="s5-title">
+    <div class="container">
+      <header class="section-head section-head--split">
+        <div class="section-head__main">
+          <p class="eyebrow" data-reveal>05 · AIF / Structured Financing</p>
+          <h2 class="h2" id="s5-title" data-reveal style="--d:1">Tailored Structures for Complex Requirements</h2>
+        </div>
+        <p class="section-head__intro" data-reveal style="--d:2">We work with alternative investment funds and structured finance providers where a transaction calls for a tailored structure, whether for a capital-intensive project, an acquisition or a special situation.</p>
+      </header>
+
+      <ul class="pf-grid" role="list" data-reveal>
+        <li>AIF &amp; fund-led financing</li>
+        <li>Structured debt</li>
+        <li>Project &amp; infrastructure finance</li>
+        <li>Financial modelling</li>
+        <li>Feasibility analysis</li>
+        <li>Debt and equity structuring</li>
+        <li>Financing strategy</li>
+        <li>Investor and lender identification</li>
+        <li>Cross-border capital raising</li>
+      </ul>
+
+      <p class="statement statement--sm statement--rule svc-closing" data-reveal>We advise on selected capital-intensive projects and cross-border opportunities where financing, investment or strategic participation is required.</p>
+    </div>
+  </section>
+
+  <!-- ====================================== 06 · MEZZANINE CAPITAL -->
+  <!-- DRAFT COPY (for client review): intro, list and closing line are new wording -->
+  <section class="section theme-light" id="mezzanine-capital" aria-labelledby="s6-title">
     <div class="container debt">
       <div class="debt__content">
-        <p class="eyebrow" data-reveal>Debt &amp; Structured Finance</p>
-        <h2 class="h2" id="debt-title" data-reveal style="--d:1">Capital Solutions Aligned to the Business</h2>
-        <p class="lead debt__intro" data-reveal style="--d:2">Debt requirements differ according to the business, cash-flow profile, assets, existing liabilities and purpose of funding.</p>
+        <p class="eyebrow" data-reveal>06 · Mezzanine Capital</p>
+        <h2 class="h2" id="s6-title" data-reveal style="--d:1">Bridging Senior Debt and Equity</h2>
+        <p class="lead debt__intro" data-reveal style="--d:2">Mezzanine capital sits between senior debt and equity in the capital structure. It can fund growth, acquisitions or buy-outs where senior borrowing capacity is fully used and shareholders wish to limit dilution.</p>
         <div data-reveal style="--d:3">
-          <p class="debt__list-intro">We assist clients in evaluating appropriate financing alternatives, including:</p>
+          <p class="debt__list-intro">Our work may include:</p>
           <ul class="check-list" role="list">
-            <li>Secured and unsecured debt</li>
-            <li>Structured debt</li>
-            <li>Working capital financing</li>
+            <li>Subordinated debt</li>
+            <li>Hybrid &amp; convertible instruments</li>
+            <li>Acquisition &amp; buy-out financing</li>
+            <li>Growth capital with limited dilution</li>
             <li>Refinancing</li>
-            <li>Special situation financing</li>
-            <li>Project-related financing</li>
             <li>Capital structure advisory</li>
-            <li>Debt restructuring</li>
           </ul>
         </div>
-        <p class="statement statement--sm statement--rule debt__closing" data-reveal>Our emphasis is on understanding the underlying business and its ability to support the proposed financing over the appropriate period.</p>
+        <p class="statement statement--sm statement--rule debt__closing" data-reveal>Each structure is assessed against the business’s cash flows, the position of existing lenders and the shareholders’ objectives.</p>
       </div>
 
       <div class="debt__visual">
@@ -1088,13 +1386,13 @@
     </div>
   </section>
 
-  <!-- ============================================ MERGERS & ACQUISITIONS -->
-  <section class="section theme-light" id="mergers-acquisitions" aria-labelledby="ma-title">
+  <!-- ============================================== 07 · M&A AND JC -->
+  <section class="section theme-light theme-light--off" id="ma-jc" aria-labelledby="s7-title">
     <div class="container">
       <header class="section-head section-head--split">
         <div class="section-head__main">
-          <p class="eyebrow" data-reveal>Mergers &amp; Acquisitions</p>
-          <h2 class="h2" id="ma-title" data-reveal style="--d:1">Strategic Transactions<span class="dot">.</span><br>Disciplined Execution<span class="dot">.</span></h2>
+          <p class="eyebrow" data-reveal>07 · M&amp;A and JC</p>
+          <h2 class="h2" id="s7-title" data-reveal style="--d:1">Strategic Transactions<span class="dot">.</span><br>Disciplined Execution<span class="dot">.</span></h2>
         </div>
         <p class="section-head__intro" data-reveal style="--d:2">Sovereign Ventures provides advisory support for both buy-side and sell-side transactions.</p>
       </header>
@@ -1143,44 +1441,8 @@
 
       <div class="ma-foot" data-reveal>
         <p class="statement">We remain focused on strategic fit, valuation, structure and stakeholder interests.</p>
-        <a class="btn btn--dark" href="contact.html?interest=mergers-acquisitions#enquiry">Discuss an M&amp;A Opportunity</a>
+        <a class="btn btn--dark" href="contact.html?interest=ma-jc#enquiry">Discuss an M&amp;A Opportunity</a>
       </div>
-    </div>
-  </section>
-
-  <!-- ==================================================== PROJECT FINANCE -->
-  <section class="section section--blueprint theme-light theme-light--off" id="project-finance" aria-labelledby="pf-title">
-    <div class="container">
-      <header class="section-head section-head--split">
-        <div class="section-head__main">
-          <p class="eyebrow" data-reveal>Project Finance &amp; International Transactions</p>
-          <h2 class="h2" id="pf-title" data-reveal style="--d:1">Cross-Border Capital &amp; Strategic Opportunities</h2>
-        </div>
-        <p class="section-head__intro" data-reveal style="--d:2">We advise on selected capital-intensive projects and cross-border opportunities where financing, investment or strategic participation is required.</p>
-      </header>
-
-      <ul class="pf-grid" role="list" data-reveal>
-        <li>Project assessment</li>
-        <li>Financial modelling</li>
-        <li>Feasibility analysis</li>
-        <li>Debt and equity structuring</li>
-        <li>Financing strategy</li>
-        <li>Investor and lender identification</li>
-        <li>Cross-border capital raising</li>
-        <li>International partnerships</li>
-        <li>Overseas investment opportunities</li>
-      </ul>
-
-      <aside class="note" aria-label="Note on international transactions" data-reveal>
-        <svg class="note__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" focusable="false">
-          <circle cx="12" cy="12" r="10"/>
-          <path d="M12 10.5v6.5M12 7v.6"/>
-        </svg>
-        <div>
-          <span class="note__label">Please note</span>
-          <p>International transactions may involve additional legal, regulatory, tax and currency considerations. We coordinate with appropriate specialist advisors where required.</p>
-        </div>
-      </aside>
     </div>
   </section>
 
@@ -1272,11 +1534,7 @@
     <div class="footer-top">
       <div class="footer-brand">
         <a class="brand" href="index.html" aria-label="Sovereign Ventures home">
-          <svg class="brand__logo" viewBox="0 0 150 34" aria-hidden="true" focusable="false">
-            <rect x="0" y="1" width="2" height="32" fill="#C8102E"/>
-            <text class="brand__l1" x="14" y="14" textLength="134" lengthAdjust="spacing">SOVEREIGN</text>
-            <text class="brand__l2" x="14" y="32" textLength="134" lengthAdjust="spacing">VENTURES</text>
-          </svg>
+          <img class="brand__img" src="images/logo.png" width="200" height="109" alt="Sovereign Ventures" loading="lazy" decoding="async">
         </a>
         <p class="footer-tagline">Built for Global Capital</p>
       </div>
@@ -1284,14 +1542,27 @@
       <nav class="footer-col--nav" aria-label="Footer">
         <h2 class="footer-heading">Navigation</h2>
         <ul class="footer-links" role="list">
-          <li><a href="about.html">About</a></li>
-          <li><a href="team.html">Team</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="why-sovereign-ventures.html">Why Sovereign Ventures?</a></li>
+          <li><a href="our-identity.html">Our Identity</a></li>
           <li><a href="services.html" aria-current="page">Services</a></li>
-          <li><a href="#private-capital">Private Capital</a></li>
-          <li><a href="#mergers-acquisitions">M&amp;A</a></li>
-          <li><a href="index.html#global-network">Global Network</a></li>
-          <li><a href="#approach">Approach</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="team.html">Our Team</a></li>
+          <li><a href="our-partners.html">Our Partners</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-col--services" aria-label="Services">
+        <h2 class="footer-heading">Services</h2>
+        <ul class="footer-links" role="list">
+          <li><a href="#unsecured-secured-debt">Unsecured Debt / Secured Debt</a></li>
+          <li><a href="#private-equity-quasi-equity">Private Equity / Quasi Equity</a></li>
+          <li><a href="#trade-financing">Domestic &amp; International Trade Financing</a></li>
+          <li><a href="#promoter-funding-private-credit">Promoter Funding / Private Credit</a></li>
+          <li><a href="#aif-structured-financing">AIF / Structured Financing</a></li>
+          <li><a href="#mezzanine-capital">Mezzanine Capital</a></li>
+          <li><a href="#ma-jc">M&amp;A and JC</a></li>
         </ul>
       </nav>
 
@@ -1340,7 +1611,7 @@
   var backToTop = document.querySelector('.back-to-top');
   var timeline = document.querySelector('[data-timeline]');
   var timelineSteps = timeline ? toArray(timeline.querySelectorAll('.timeline__step')) : [];
-  var desktopNavQuery = window.matchMedia('(min-width: 1180px)');
+  var desktopNavQuery = window.matchMedia('(min-width: 1280px)');
   var horizontalTimelineQuery = window.matchMedia('(min-width: 1024px)');
   var revealItems = toArray(document.querySelectorAll('[data-reveal]'));
 
@@ -1504,6 +1775,66 @@
     reduceMotion = event.matches;
     if (reduceMotion) revealAll();
     requestUpdate();
+  });
+})();
+</script>
+<script>
+/* Services dropdown (desktop) and expandable services list (mobile menu) */
+(function () {
+  'use strict';
+  function toArray(list) { return Array.prototype.slice.call(list); }
+  var items = toArray(document.querySelectorAll('[data-subnav]'));
+  var canHover = window.matchMedia ? window.matchMedia('(hover: hover) and (pointer: fine)') : { matches: false };
+
+  function setOpen(item, open, focusToggle) {
+    var button = item.querySelector('.subnav-toggle');
+    item.classList.toggle('is-open', open);
+    button.setAttribute('aria-expanded', open ? 'true' : 'false');
+    button.setAttribute('aria-label', open ? 'Hide services' : 'Show services');
+    if (!open && focusToggle) button.focus();
+  }
+
+  items.forEach(function (item) {
+    var button = item.querySelector('.subnav-toggle');
+    button.addEventListener('click', function (event) {
+      event.stopPropagation();
+      var open = !item.classList.contains('is-open');
+      items.forEach(function (other) { if (other !== item) setOpen(other, false); });
+      item.classList.remove('is-suppressed');
+      setOpen(item, open);
+    });
+    item.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && item.classList.contains('is-open')) { event.preventDefault(); setOpen(item, false, true); }
+    });
+    item.addEventListener('focusout', function (event) {
+      if (!event.relatedTarget || !item.contains(event.relatedTarget)) setOpen(item, false);
+    });
+    item.addEventListener('mouseleave', function () {
+      item.classList.remove('is-suppressed');
+      if (canHover.matches) setOpen(item, false);
+    });
+    toArray(item.querySelectorAll('.subnav a')).forEach(function (link) {
+      link.addEventListener('click', function () {
+        setOpen(item, false);
+        item.classList.add('is-suppressed'); // keep a hovering pointer from reopening it immediately
+        link.blur();
+      });
+    });
+  });
+
+  document.addEventListener('click', function (event) {
+    items.forEach(function (item) { if (!item.contains(event.target)) setOpen(item, false); });
+  });
+
+  toArray(document.querySelectorAll('.mobile-sub-toggle')).forEach(function (button) {
+    var list = document.getElementById(button.getAttribute('aria-controls'));
+    if (!list) return;
+    button.addEventListener('click', function () {
+      var open = button.getAttribute('aria-expanded') !== 'true';
+      button.setAttribute('aria-expanded', open ? 'true' : 'false');
+      button.setAttribute('aria-label', open ? 'Hide services' : 'Show services');
+      list.hidden = !open;
+    });
   });
 })();
 </script>
